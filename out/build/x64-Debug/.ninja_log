@@ -1,0 +1,23 @@
+# ninja log v5
+35	564	6845999953399154	src/CMakeFiles/vulkan_guide.dir/vk_initializers.cpp.obj	284bcd39c058f593
+19	645	6845999954522541	third_party/CMakeFiles/imgui.dir/imgui/imgui_draw.cpp.obj	284dd994e51fae4
+10	586	6845999953929020	third_party/CMakeFiles/imgui.dir/imgui/imgui_impl_vulkan.cpp.obj	f39129a9ca73bf4b
+14	693	6845999955232421	third_party/CMakeFiles/imgui.dir/imgui/imgui_demo.cpp.obj	8b047086cbfc8a5a
+1	1727	6845994157296051	third_party/CMakeFiles/tinyobjloader.dir/tinyobjloader/tiny_obj_loader.cc.obj	785f1a03d669c745
+7	681	6845999955105394	third_party/CMakeFiles/imgui.dir/imgui/imgui_widgets.cpp.obj	37b5d33ee7cbdf4b
+2	940	6845999957724309	third_party/CMakeFiles/imgui.dir/imgui/imgui.cpp.obj	5a224aa9a5680445
+5	1995	6845994159961650	third_party/CMakeFiles/vkbootstrap.dir/vkbootstrap/VkBootstrap.cpp.obj	efe024d2ca73bd53
+2	121	6845996543384842	third_party/vkbootstrap.lib	8d2632747b82bf0e
+6	125	6845996543410513	third_party/tinyobjloader.lib	cf99a42bb83a4f89
+41	592	6845999953562744	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ffda479f46f00a39
+33	615	6846001590530034	src/CMakeFiles/vulkan_guide.dir/vk_initializers.cpp.obj	1d2c7eb28fd8906f
+19	642	6846001590853362	third_party/CMakeFiles/imgui.dir/imgui/imgui_impl_vulkan.cpp.obj	388a602015be4873
+28	644	6846001590988147	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+37	646	6846001590938156	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+6	683	6846001591682371	third_party/CMakeFiles/imgui.dir/imgui/imgui_demo.cpp.obj	a07ec52562300191
+10	686	6846001591854227	third_party/CMakeFiles/imgui.dir/imgui/imgui_draw.cpp.obj	d4b704bfa181e07a
+14	769	6846001592777428	third_party/CMakeFiles/imgui.dir/imgui/imgui_widgets.cpp.obj	7bd663b766a5eb0d
+23	879	6846001593869130	third_party/CMakeFiles/imgui.dir/imgui/imgui_impl_sdl.cpp.obj	5620d585bfef4b30
+1	989	6846001594983920	third_party/CMakeFiles/imgui.dir/imgui/imgui.cpp.obj	67cc85472a90f3b3
+989	1056	6846001595571694	third_party/imgui.lib	9b29814689a3a890
+1057	1370	6846001598696912	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335

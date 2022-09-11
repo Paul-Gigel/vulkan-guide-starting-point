@@ -1,0 +1,11 @@
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/Shaders.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/vkbootstrap.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/tinyobjloader.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/imgui.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/edit_cache.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/rebuild_cache.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/src/CMakeFiles/vulkan_guide.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/src/CMakeFiles/edit_cache.dir
+C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/src/CMakeFiles/rebuild_cache.dir
