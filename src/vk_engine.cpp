@@ -4,6 +4,7 @@
 #include <SDL.h>
 #include <SDL_vulkan.h>
 
+#include <iostream>
 #include <vk_types.h>
 #include <vk_initializers.h>
 
@@ -36,7 +37,9 @@ void VulkanEngine::init()
 		_windowExtent.height,
 		window_flags
 	);
-	
+	//init
+	initVulkan();
+	initSwapchain();
 	//everything went fine
 	_isInitialized = true;
 }
@@ -65,11 +68,34 @@ void VulkanEngine::initVulkan() {
 	_chosenGPU = physicalDevice.physical_device;
 	_device = vkbDevice.device;
 }
+void VulkanEngine::initSwapchain() {
+	vkb::SwapchainBuilder swapchainBuilder(_chosenGPU, _device, _surface);
+	vkb::Swapchain vkbSwapchain = swapchainBuilder
+		.use_default_format_selection()
+		.set_desired_present_mode(VK_PRESENT_MODE_FIFO_KHR)
+		.set_desired_extent(_windowExtent.width, _windowExtent.height)
+		.build()
+		.value();
+	//store swapchainstuff
+	_swapchain = vkbSwapchain.swapchain;
+	_swapchainImageFormat = vkbSwapchain.image_format;
+	_swapchainImages = vkbSwapchain.get_images().value();
+	_swapchainImageViews = vkbSwapchain.get_image_views().value();
+}
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
-		
+		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
+		for (auto swapchainImageView : _swapchainImageViews)
+		{
+			vkDestroyImageView(_device, swapchainImageView, nullptr);
+		}
+		vkDestroyDevice(_device, nullptr);
+		vkDestroySurfaceKHR(_instance, _surface, nullptr);
+		vkb::destroy_debug_utils_messenger(_instance, _debugMessanger, nullptr);
+		vkDestroyInstance(_instance, nullptr);
 		SDL_DestroyWindow(_window);
+		std::cout << "cleaned up\n";
 	}
 }
 void VulkanEngine::draw()

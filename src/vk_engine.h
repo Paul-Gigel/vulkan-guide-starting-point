@@ -4,7 +4,7 @@
 #pragma once
 
 #include <vk_types.h>
-
+#include <vector>
 class VulkanEngine {
 private:
 	VkInstance _instance;
@@ -12,6 +12,10 @@ private:
 	VkPhysicalDevice _chosenGPU;
 	VkDevice _device;
 	VkSurfaceKHR _surface;
+	VkSwapchainKHR _swapchain;
+	VkFormat _swapchainImageFormat;
+	std::vector<VkImage> _swapchainImages;
+	std::vector<VkImageView> _swapchainImageViews;
 public:
 
 	bool _isInitialized{ false };
@@ -25,6 +29,8 @@ public:
 	void init();
 
 	void initVulkan();
+
+	void initSwapchain();
 
 	//shuts down the engine
 	void cleanup();
