@@ -7,6 +7,20 @@
 #include <vk_types.h>
 #include <vk_initializers.h>
 
+#include "VkBootstrap.h"
+
+using namespace std;
+#define	VK_CHECK(x)\
+	do\
+	{\
+		Vk_Result err = x;\
+		if (err)\
+		{\
+			std::cout << "detected Vulkan error:	" << err << "\n";\
+			abort;\
+		}\
+	} while (0);
+
 void VulkanEngine::init()
 {
 	// We initialize SDL and create a window with it. 
@@ -26,6 +40,31 @@ void VulkanEngine::init()
 	//everything went fine
 	_isInitialized = true;
 }
+void VulkanEngine::initVulkan() {
+	vkb::InstanceBuilder builder;
+	auto instRet = builder
+		.set_app_name("learning Vulkan")
+		.request_validation_layers(true)
+		.require_api_version(1, 1, 0)
+		.use_default_debug_messenger()
+		.build();
+	vkb::Instance vkbInst = instRet.value();
+	_instance = vkbInst.instance;
+	_debugMessanger = vkbInst.debug_messenger;
+	SDL_Vulkan_CreateSurface(_window, _instance, &_surface);
+	vkb::PhysicalDeviceSelector selector(vkbInst);
+	vkb::PhysicalDevice physicalDevice = selector
+		.set_minimum_version(1, 1)
+		.set_surface(_surface)
+		.select()
+		.value();
+	vkb::DeviceBuilder deviceBuilder(physicalDevice);
+	vkb::Device vkbDevice = deviceBuilder
+		.build()
+		.value();
+	_chosenGPU = physicalDevice.physical_device;
+	_device = vkbDevice.device;
+}
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
@@ -33,12 +72,10 @@ void VulkanEngine::cleanup()
 		SDL_DestroyWindow(_window);
 	}
 }
-
 void VulkanEngine::draw()
 {
 	//nothing yet
 }
-
 void VulkanEngine::run()
 {
 	SDL_Event e;

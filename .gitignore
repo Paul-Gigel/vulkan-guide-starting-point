@@ -3,3 +3,4 @@
 /.vs
 /.idea
 /.github/workflows
+/cmake-build-debug

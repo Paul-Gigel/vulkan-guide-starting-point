@@ -21,3 +21,13 @@
 1	989	6846001594983920	third_party/CMakeFiles/imgui.dir/imgui/imgui.cpp.obj	67cc85472a90f3b3
 989	1056	6846001595571694	third_party/imgui.lib	9b29814689a3a890
 1057	1370	6846001598696912	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+2	1084	6846664073693298	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+1085	1607	6846664077163370	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+7	642	6846680597523121	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+12	1029	6846680601420201	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+2	1809	6846680609189024	third_party/CMakeFiles/vkbootstrap.dir/vkbootstrap/VkBootstrap.cpp.obj	efe024d2ca73bd53
+1809	1914	6846680610238547	third_party/vkbootstrap.lib	8d2632747b82bf0e
+1914	2226	6846680612848541	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+7	626	6846702881017807	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+2	1027	6846702885031652	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+1027	1275	6846702887014462	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335

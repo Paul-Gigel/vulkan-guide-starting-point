@@ -6,6 +6,12 @@
 #include <vk_types.h>
 
 class VulkanEngine {
+private:
+	VkInstance _instance;
+	VkDebugUtilsMessengerEXT _debugMessanger;
+	VkPhysicalDevice _chosenGPU;
+	VkDevice _device;
+	VkSurfaceKHR _surface;
 public:
 
 	bool _isInitialized{ false };
@@ -17,6 +23,8 @@ public:
 
 	//initializes everything in the engine
 	void init();
+
+	void initVulkan();
 
 	//shuts down the engine
 	void cleanup();
