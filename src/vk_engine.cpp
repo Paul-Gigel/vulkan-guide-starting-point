@@ -93,8 +93,16 @@ void VulkanEngine::initCommands() {
 	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
 	commandPoolInfo.pNext = nullptr;
 	commandPoolInfo.queueFamilyIndex = _graphicsQueueFamily;
-	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	commandPoolInfo.flags =    ;
 	VK_CHECK(vkCreateCommandPool(_device, &commandPoolInfo, nullptr, &_commandPool));
+
+	VkCommandBufferAllocateInfo allocInfo{};
+	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
+	allocInfo.pNext = nullptr;
+	allocInfo.commandPool = _commandPool;
+	allocInfo.commandBufferCount = 1;
+	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+	VK_CHECK(vkAllocateCommandBuffers(_device, &allocInfo, &_mainCommandBuffer));
 }
 void VulkanEngine::cleanup()
 {	
