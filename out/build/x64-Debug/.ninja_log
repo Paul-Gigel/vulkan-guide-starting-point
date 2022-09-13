@@ -53,3 +53,6 @@
 802	1001	6846839259920000	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
 2	813	6846839637879033	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
 814	993	6846839639364677	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+7	625	6847516738210694	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+2	1099	6847516742931229	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+1099	1526	6847516745720641	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335

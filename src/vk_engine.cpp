@@ -39,6 +39,7 @@ void VulkanEngine::init()
 	//init
 	initVulkan();
 	initSwapchain();
+	initCommands();
 	//everything went fine
 	_isInitialized = true;
 }
@@ -66,6 +67,12 @@ void VulkanEngine::initVulkan() {
 		.value();
 	_chosenGPU = physicalDevice.physical_device;
 	_device = vkbDevice.device;
+	_graphicsQueue = vkbDevice
+		.get_queue(vkb::QueueType::graphics)
+		.value();
+	_graphicsQueueFamily = vkbDevice
+		.get_queue_index(vkb::QueueType::graphics)
+		.value();
 }
 void VulkanEngine::initSwapchain() {
 	vkb::SwapchainBuilder swapchainBuilder(_chosenGPU, _device, _surface);
@@ -80,6 +87,9 @@ void VulkanEngine::initSwapchain() {
 	_swapchainImageFormat = vkbSwapchain.image_format;
 	_swapchainImages = vkbSwapchain.get_images().value();
 	_swapchainImageViews = vkbSwapchain.get_image_views().value();
+}
+void VulkanEngine::initCommands() {
+
 }
 void VulkanEngine::cleanup()
 {	

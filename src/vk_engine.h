@@ -11,11 +11,17 @@ private:
 	VkDebugUtilsMessengerEXT _debugMessanger;
 	VkPhysicalDevice _chosenGPU;
 	VkDevice _device;
+
 	VkSurfaceKHR _surface;
 	VkSwapchainKHR _swapchain;
 	VkFormat _swapchainImageFormat;
 	std::vector<VkImage> _swapchainImages;
 	std::vector<VkImageView> _swapchainImageViews;
+
+	VkQueue _graphicsQueue;
+	uint32_t _graphicsQueueFamily;
+	VkCommandPool _commandPoll;
+	VkCommandBuffer _mainCommandBuffer;
 public:
 
 	bool _isInitialized{ false };
@@ -31,6 +37,8 @@ public:
 	void initVulkan();
 
 	void initSwapchain();
+
+	void initCommands();
 
 	//shuts down the engine
 	void cleanup();
