@@ -21,7 +21,6 @@ using namespace std;
 			abort;\
 		}\
 	} while (0);
-
 void VulkanEngine::init()
 {
 	// We initialize SDL and create a window with it. 
@@ -93,7 +92,7 @@ void VulkanEngine::cleanup()
 		vkDestroyDevice(_device, nullptr);
 		vkDestroySurfaceKHR(_instance, _surface, nullptr);
 		vkb::destroy_debug_utils_messenger(_instance, _debugMessanger, nullptr);
-		vkDestroyInstance(_instance, nullptr);
+		vkDestroyInstance(_instance, nullptr);   
 		SDL_DestroyWindow(_window);
 		std::cout << "cleaned up\n";
 	}
@@ -120,4 +119,3 @@ void VulkanEngine::run()
 		draw();
 	}
 }
-
