@@ -14,13 +14,13 @@ using namespace std;
 #define	VK_CHECK(x)\
 	do\
 	{\
-		Vk_Result err = x;\
+		VkResult err = x;\
 		if (err)\
 		{\
 			std::cout << "detected Vulkan error:	" << err << "\n";\
 			abort;\
 		}\
-	} while (0);
+	} while (0)
 void VulkanEngine::init()
 {
 	// We initialize SDL and create a window with it. 
@@ -89,7 +89,12 @@ void VulkanEngine::initSwapchain() {
 	_swapchainImageViews = vkbSwapchain.get_image_views().value();
 }
 void VulkanEngine::initCommands() {
-
+	VkCommandPoolCreateInfo commandPoolInfo{};
+	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
+	commandPoolInfo.pNext = nullptr;
+	commandPoolInfo.queueFamilyIndex = _graphicsQueueFamily;
+	commandPoolInfo.flags = VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT;
+	VK_CHECK(vkCreateCommandPool(_device, &commandPoolInfo, nullptr, &_commandPool));
 }
 void VulkanEngine::cleanup()
 {	

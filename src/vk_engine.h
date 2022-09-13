@@ -20,7 +20,7 @@ private:
 
 	VkQueue _graphicsQueue;
 	uint32_t _graphicsQueueFamily;
-	VkCommandPool _commandPoll;
+	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
 public:
 
