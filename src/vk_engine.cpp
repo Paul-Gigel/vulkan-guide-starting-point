@@ -89,24 +89,16 @@ void VulkanEngine::initSwapchain() {
 	_swapchainImageViews = vkbSwapchain.get_image_views().value();
 }
 void VulkanEngine::initCommands() {
-	VkCommandPoolCreateInfo commandPoolInfo{};
-	commandPoolInfo.sType = VK_STRUCTURE_TYPE_COMMAND_POOL_CREATE_INFO;
-	commandPoolInfo.pNext = nullptr;
-	commandPoolInfo.queueFamilyIndex = _graphicsQueueFamily;
-	commandPoolInfo.flags =    ;
+	VkCommandPoolCreateInfo commandPoolInfo = vkinit::commandPoolCreateInfo(_graphicsQueueFamily, VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT);
 	VK_CHECK(vkCreateCommandPool(_device, &commandPoolInfo, nullptr, &_commandPool));
 
-	VkCommandBufferAllocateInfo allocInfo{};
-	allocInfo.sType = VK_STRUCTURE_TYPE_COMMAND_BUFFER_ALLOCATE_INFO;
-	allocInfo.pNext = nullptr;
-	allocInfo.commandPool = _commandPool;
-	allocInfo.commandBufferCount = 1;
-	allocInfo.level = VK_COMMAND_BUFFER_LEVEL_PRIMARY;
+	VkCommandBufferAllocateInfo allocInfo = vkinit::commandBufferAllocInfo(_commandPool, 1);
 	VK_CHECK(vkAllocateCommandBuffers(_device, &allocInfo, &_mainCommandBuffer));
 }
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
+		vkDestroyCommandPool(_device, _commandPool, nullptr);
 		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
 		for (auto swapchainImageView : _swapchainImageViews)
 		{
