@@ -107,7 +107,26 @@ void VulkanEngine::initDefaultRenderPass() {
 	color_attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;	//we don't care about stencil
 	color_attachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;			//we don't know or care about the starting layout of the attachment
 	color_attachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;		//after the renderpass ends, the image has to be on a layout ready for display
+	
+	VkAttachmentReference colorAttachmentRef{};
+	colorAttachmentRef.attachment = 0;
+	colorAttachmentRef.layout = VK_IMAGE_LAYOUT_COLOR_ATTACHMENT_OPTIMAL;
+
+	VkSubpassDescription subpass{};
+	subpass.pipelineBindPoint = VK_PIPELINE_BIND_POINT_GRAPHICS;
+	subpass.colorAttachmentCount = 1;
+	subpass.pColorAttachments = &colorAttachmentRef;
+
+	VkRenderPassCreateInfo renderPassInfo{};
+	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
+	renderPassInfo.attachmentCount = 1;
+	renderPassInfo.pAttachments = &color_attachment;
+	renderPassInfo.subpassCount = 1;
+	renderPassInfo.pSubpasses = &subpass;
+
+	VK_CHECK(vkCreateRenderPass(_device, &renderPassInfo, nullptr, &_renderPass));
 }
+void VulkanEngine::initFrameBuffers() {};
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
@@ -124,7 +143,7 @@ void VulkanEngine::cleanup()
 		SDL_DestroyWindow(_window);
 		std::cout << "cleaned up\n";
 	}
-}
+} 
 void VulkanEngine::draw()
 {
 	//nothing yet
