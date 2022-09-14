@@ -40,6 +40,8 @@ void VulkanEngine::init()
 	initVulkan();
 	initSwapchain();
 	initCommands();
+	initDefaultRenderPass();
+	initFrameBuffers();
 	//everything went fine
 	_isInitialized = true;
 }
@@ -94,6 +96,17 @@ void VulkanEngine::initCommands() {
 
 	VkCommandBufferAllocateInfo allocInfo = vkinit::commandBufferAllocInfo(_commandPool, 1);
 	VK_CHECK(vkAllocateCommandBuffers(_device, &allocInfo, &_mainCommandBuffer));
+}
+void VulkanEngine::initDefaultRenderPass() {
+	VkAttachmentDescription color_attachment = {};						// the renderpass will use this color attachment.
+	color_attachment.format = _swapchainImageFormat;					//the attachment will have the format needed by the swapchain
+	color_attachment.samples = VK_SAMPLE_COUNT_1_BIT;					//1 sample, we won't be doing MSAA
+	color_attachment.loadOp = VK_ATTACHMENT_LOAD_OP_CLEAR;				// we Clear when this attachment is loaded
+	color_attachment.storeOp = VK_ATTACHMENT_STORE_OP_STORE;			// we keep the attachment stored when the renderpass ends
+	color_attachment.stencilLoadOp = VK_ATTACHMENT_LOAD_OP_DONT_CARE;	//we don't care about stencil
+	color_attachment.stencilStoreOp = VK_ATTACHMENT_STORE_OP_DONT_CARE;	//we don't care about stencil
+	color_attachment.initialLayout = VK_IMAGE_LAYOUT_UNDEFINED;			//we don't know or care about the starting layout of the attachment
+	color_attachment.finalLayout = VK_IMAGE_LAYOUT_PRESENT_SRC_KHR;		//after the renderpass ends, the image has to be on a layout ready for display
 }
 void VulkanEngine::cleanup()
 {	

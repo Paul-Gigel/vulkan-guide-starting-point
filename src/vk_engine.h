@@ -22,6 +22,9 @@ private:
 	uint32_t _graphicsQueueFamily;
 	VkCommandPool _commandPool;
 	VkCommandBuffer _mainCommandBuffer;
+
+	VkRenderPass _renderPass;
+	std::vector<VkFramebuffer> _frameBuffers;
 public:
 
 	bool _isInitialized{ false };
@@ -39,6 +42,10 @@ public:
 	void initSwapchain();
 
 	void initCommands();
+
+	void initDefaultRenderPass();
+
+	void initFrameBuffers();
 
 	//shuts down the engine
 	void cleanup();
