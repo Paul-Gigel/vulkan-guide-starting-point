@@ -162,6 +162,10 @@ void VulkanEngine::initSyncStructures() {
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
+		vkDeviceWaitIdle(_device);
+		vkDestroyFence(_device, _renderFence, nullptr);
+		vkDestroySemaphore(_device, _renderSemaphore, nullptr);
+		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
 		for (size_t i = 0; i < _frameBuffers.size(); i++)
 		{
 			vkDestroyFramebuffer(_device, _frameBuffers[i], nullptr);
@@ -196,7 +200,7 @@ void VulkanEngine::draw()
 
 	VkClearValue clearValue;
 	float flash = abs(sin(_frameNumber / 120.f));
-	clearValue.color = { {0.0f, 0.0f, flash, 1.0f} };
+	clearValue.color = { {flash, 0.0f, flash, 1.0f} };
 
 	VkRenderPassBeginInfo rpBeginInfo{};
 	rpBeginInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_BEGIN_INFO;
