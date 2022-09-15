@@ -126,16 +126,35 @@ void VulkanEngine::initDefaultRenderPass() {
 
 	VK_CHECK(vkCreateRenderPass(_device, &renderPassInfo, nullptr, &_renderPass));
 }
-void VulkanEngine::initFrameBuffers() {};
+void VulkanEngine::initFrameBuffers() {
+	VkFramebufferCreateInfo fpInfo{};
+	fpInfo.sType = VK_STRUCTURE_TYPE_FRAMEBUFFER_CREATE_INFO;
+	fpInfo.pNext = nullptr;
+	fpInfo.renderPass = _renderPass;
+	fpInfo.attachmentCount = 1;
+	fpInfo.width = _windowExtent.width;
+	fpInfo.height = _windowExtent.height;
+	fpInfo.layers = 1;
+	const uint32_t swapchainImageCount = _swapchainImages.size();
+	_frameBuffers = std::vector<VkFramebuffer>(swapchainImageCount);
+	std::cout << swapchainImageCount << "\n";							//______________________________________________________________------------------------_
+	for (size_t i = 0; i < swapchainImageCount; i++)
+	{
+		fpInfo.pAttachments = &_swapchainImageViews[i];
+		VK_CHECK(vkCreateFramebuffer(_device, &fpInfo, nullptr, &_frameBuffers[i]));
+	}
+};
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
+		for (size_t i = 0; i < _frameBuffers.size(); i++)
+		{
+			vkDestroyFramebuffer(_device, _frameBuffers[i], nullptr);
+			vkDestroyImageView(_device, _swapchainImageViews[i], nullptr);
+		}
+		vkDestroyRenderPass(_device, _renderPass, nullptr);
 		vkDestroyCommandPool(_device, _commandPool, nullptr);
 		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
-		for (auto swapchainImageView : _swapchainImageViews)
-		{
-			vkDestroyImageView(_device, swapchainImageView, nullptr);
-		}
 		vkDestroyDevice(_device, nullptr);
 		vkDestroySurfaceKHR(_instance, _surface, nullptr);
 		vkb::destroy_debug_utils_messenger(_instance, _debugMessanger, nullptr);
