@@ -25,6 +25,9 @@ private:
 
 	VkRenderPass _renderPass;
 	std::vector<VkFramebuffer> _frameBuffers;
+
+	VkSemaphore _presentSemaphore, _renderSemaphore;
+	VkFence _renderFence;
 public:
 
 	bool _isInitialized{ false };
@@ -46,6 +49,8 @@ public:
 	void initDefaultRenderPass();
 
 	void initFrameBuffers();
+
+	void initSyncStructures();
 
 	//shuts down the engine
 	void cleanup();
