@@ -1,7 +1,7 @@
-/assets/*
+/build
 /bin
 /.vs
 /.idea
-/.github
-/.git
+/.github/workflows
+/cmake-build-debug
 /out
