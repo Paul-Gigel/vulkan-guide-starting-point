@@ -1,6 +1,4 @@
+/.*
 /bin
-/.vs
-/.idea
-/.github/workflows
 /cmake-build-debug
 /out
