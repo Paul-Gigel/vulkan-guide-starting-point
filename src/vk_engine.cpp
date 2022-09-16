@@ -5,6 +5,7 @@
 #include <SDL_vulkan.h>
 
 #include <iostream>
+#include <fstream>
 #include <vk_types.h>
 #include <vk_initializers.h>
 
@@ -18,7 +19,7 @@ using namespace std;
 		if (err)\
 		{\
 			std::cout << "detected Vulkan error:	" << err << "\n";\
-			abort;\
+			abort();\
 		}\
 	} while (0)
 void VulkanEngine::init()
@@ -43,6 +44,7 @@ void VulkanEngine::init()
 	initDefaultRenderPass();
 	initFrameBuffers();
 	initSyncStructures();
+	initPipelines();
 	//everything went fine
 	_isInitialized = true;
 }
@@ -159,6 +161,26 @@ void VulkanEngine::initSyncStructures() {
 	VK_CHECK(vkCreateSemaphore(_device, &semaphoreCreateInfo, nullptr, &_presentSemaphore));
 	VK_CHECK(vkCreateSemaphore(_device, &semaphoreCreateInfo, nullptr, &_renderSemaphore));
 }
+void VulkanEngine::initPipelines() {
+	VkShaderModule triangleFragShader;
+	if (!loadShaderModule("../../shaders/triangle.frag.spv", &triangleFragShader))
+	{
+		std::cout << "Error when building the triangle fragment shader module" << std::endl;
+	}
+	else
+	{
+		std::cout << "Triangle fragment shader successfully loaded" << std::endl;
+	}
+	VkShaderModule triangleVertexShader;
+	if (!loadShaderModule("../../shaders/triangle.vert.spv", &triangleVertexShader))
+	{
+		std::cout << "Error when building the triangle vertex shader module" << std::endl;
+
+	}
+	else {
+		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
+	}
+}
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
@@ -258,4 +280,29 @@ void VulkanEngine::run()
 
 		draw();
 	}
+}
+
+
+bool VulkanEngine::loadShaderModule(const char* filePath, VkShaderModule* outShaderModule) {
+	std::ifstream file(filePath, std::ios::ate | std::ios::binary);
+	if (!file.is_open())	return false;
+	size_t fileSize = (size_t)file.tellg();
+	std::vector<uint32_t> buffer(fileSize / sizeof(uint32_t));
+	file.seekg(0);
+	file.read((char*)buffer.data(), fileSize);
+	file.close();
+
+	VkShaderModuleCreateInfo createInfo{};
+	createInfo.sType = VK_STRUCTURE_TYPE_SHADER_MODULE_CREATE_INFO;
+	createInfo.pNext = nullptr;
+	createInfo.codeSize = buffer.size() * sizeof(uint32_t);
+	createInfo.pCode = buffer.data();
+
+	VkShaderModule shaderModule;
+	if (vkCreateShaderModule(_device, &createInfo, nullptr, &shaderModule) != VK_SUCCESS)
+	{
+		return false;
+	}
+	*outShaderModule = shaderModule;
+	return true;
 }

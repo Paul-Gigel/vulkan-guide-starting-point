@@ -52,6 +52,8 @@ public:
 
 	void initSyncStructures();
 
+	void initPipelines();
+
 	//shuts down the engine
 	void cleanup();
 
@@ -60,4 +62,7 @@ public:
 
 	//run main loop
 	void run();
+
+
+	bool loadShaderModule(const char*, VkShaderModule*);
 };
