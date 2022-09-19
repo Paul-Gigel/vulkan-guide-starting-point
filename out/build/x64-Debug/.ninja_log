@@ -15,7 +15,10 @@
 14	95	6850485873184088	third_party/imgui.lib	9b29814689a3a890
 7	173	6850487101722462	../../../shaders/triangle.vert.spv	6a5a16b75474abe4
 173	578	6850487105770434	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
-182	1166	6850487111665427	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
-1166	1527	6850487115149998	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
 2	1015	6850494503679788	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
-1016	1207	6850494505292889	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+3	439	6852751334224324	../../../bin/vulkan_guide.exe	9a15ff73d1c9d335
+13	448	6852797540302189	src/CMakeFiles/vulkan_guide.dir/vk_initializers.cpp.obj	1d2c7eb28fd8906f
+18	638	6852797542191474	src/CMakeFiles/vulkan_guide.dir/vk_Pipeline.cpp.obj	931be7949716f6f4
+2	669	6852797542525321	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+8	1166	6852797547456893	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+1166	1419	6852797549617044	../../../bin/vulkan_guide.exe	9c9f5c0339c3754f

@@ -12,5 +12,11 @@ namespace vkinit {
 		uint32_t count,
 		VkCommandBufferLevel level = VK_COMMAND_BUFFER_LEVEL_PRIMARY
 		);
+	VkPipelineShaderStageCreateInfo pipelineShaderStageCreateInfo(
+		VkShaderStageFlagBits, 
+		VkShaderModule
+		);
+	VkPipelineVertexInputStateCreateInfo vertexInputStateCreateInfo();
+	VkPipelineInputAssemblyStateCreateInfo inputAssemblyStateCreateInfo(VkPrimitiveTopology);
 }
 

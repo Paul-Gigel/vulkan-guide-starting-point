@@ -24,4 +24,40 @@ namespace vkinit {
 		allocInfo.level = level;
 		return allocInfo;
 	};
+	VkPipelineShaderStageCreateInfo pipelineShaderStageCreateInfo(
+		VkShaderStageFlagBits stage,
+		VkShaderModule shaderModule
+		) 
+	{
+		VkPipelineShaderStageCreateInfo info{};
+		info.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
+		info.pNext = nullptr;
+		info.stage = stage;
+		info.module = shaderModule;
+		info.pName = "main";
+		return info;
+	};
+	VkPipelineVertexInputStateCreateInfo vertexInputStateCreateInfo()
+	{
+		VkPipelineVertexInputStateCreateInfo info{};
+		info.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
+		info.pNext = nullptr;
+		info.vertexBindingDescriptionCount = 0;
+
+		info.pVertexBindingDescriptions = nullptr;
+		info.vertexAttributeDescriptionCount = 0;
+		info.pVertexAttributeDescriptions = nullptr;
+		return info;
+	}
+	VkPipelineInputAssemblyStateCreateInfo inputAssemblyStateCreateInfo(
+		VkPrimitiveTopology topology
+		)
+	{
+		VkPipelineInputAssemblyStateCreateInfo info{};
+		info.sType = VK_STRUCTURE_TYPE_PIPELINE_INPUT_ASSEMBLY_STATE_CREATE_INFO;
+		info.pNext = nullptr;
+		info.topology = topology;
+		info.primitiveRestartEnable = VK_FALSE;
+		return info;
+	}
 }

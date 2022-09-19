@@ -1,0 +1,10 @@
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\THIRD_PARTY\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point -BC:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug --check-stamp-file C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
