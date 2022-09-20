@@ -73,4 +73,10 @@ namespace vkinit {
 		info.alphaToOneEnable = VK_FALSE;
 		return info;
 	}
+	VkPipelineColorBlendAttachmentState colorBlendAttachment() {
+		VkPipelineColorBlendAttachmentState colorBlendAttachment{};
+		colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+		colorBlendAttachment.blendEnable = VK_FALSE;
+		return colorBlendAttachment;
+	}
 }

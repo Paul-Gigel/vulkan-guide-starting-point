@@ -10,6 +10,7 @@ namespace vkinit {
 	VkPipelineInputAssemblyStateCreateInfo inputAssemblyStateCreateInfo(VkPrimitiveTopology);
 	VkPipelineRasterizationStateCreateInfo rasterizationStateCreateInfo(VkPolygonMode polygonMode);
 	VkPipelineMultisampleStateCreateInfo multisampleStateCreateInfo();
+	VkPipelineColorBlendAttachmentState colorBlendAttachment();
 
 }
 
