@@ -8,6 +8,7 @@
 #include <fstream>
 #include <vk_types.h>
 #include <vk_initializers.h>
+#include <vk_Pipeline.h>
 
 #include "VkBootstrap.h"
 
@@ -180,6 +181,52 @@ void VulkanEngine::initPipelines() {
 	else {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
+	VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
+	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &_trianglePipelineLayout));
+	// layout and shader modules creation
+
+//build the stage-create-info for both vertex and fragment stages. This lets the pipeline know the shader modules per stage
+	PipelineBuilder pipelineBuilder;
+
+	pipelineBuilder._shaderStages.push_back(
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, triangleVertexShader));
+
+	pipelineBuilder._shaderStages.push_back(
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, triangleFragShader));
+
+
+	//vertex input controls how to read vertices from vertex buffers. We aren't using it yet
+	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
+
+	//input assembly is the configuration for drawing triangle lists, strips, or individual points.
+	//we are just going to draw triangle list
+	pipelineBuilder._inputAssembly = vkinit::inputAssemblyStateCreateInfo(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST);
+
+	//build viewport and scissor from the swapchain extents
+	pipelineBuilder._viewport.x = 0.0f;
+	pipelineBuilder._viewport.y = 0.0f;
+	pipelineBuilder._viewport.width = (float)_windowExtent.width;
+	pipelineBuilder._viewport.height = (float)_windowExtent.height;
+	pipelineBuilder._viewport.minDepth = 0.0f;
+	pipelineBuilder._viewport.maxDepth = 1.0f;
+
+	pipelineBuilder._scissor.offset = { 0, 0 };
+	pipelineBuilder._scissor.extent = _windowExtent;
+
+	//configure the rasterizer to draw filled triangles
+	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
+
+	//we don't use multisampling, so just run the default one
+	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
+
+	//a single blend attachment with no blending and writing to RGBA
+	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
+
+	//use the triangle layout we created
+	pipelineBuilder._pipelineLayout = _trianglePipelineLayout;
+
+	//finally build the pipeline
+	_trianglePipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
 }
 void VulkanEngine::cleanup()
 {	
@@ -234,7 +281,10 @@ void VulkanEngine::draw()
 	rpBeginInfo.clearValueCount = 1;
 	rpBeginInfo.pClearValues = &clearValue;
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
-	//...
+	
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _trianglePipeline);
+	vkCmdDraw(cmd, 3, 1, 0, 0);
+
 	vkCmdEndRenderPass(cmd);
 	VK_CHECK(vkEndCommandBuffer(cmd));
 

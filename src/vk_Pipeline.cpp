@@ -1,4 +1,5 @@
 #include "vk_Pipeline.h"
+#include <iostream>
 
 VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
 {
@@ -17,5 +18,28 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
 	colorBlending.logicOp = VK_LOGIC_OP_COPY;
 	colorBlending.attachmentCount = 1;
 	colorBlending.pAttachments = &_colorBlendAttachment;
-	return VkPipeline();
+
+	VkGraphicsPipelineCreateInfo pipelineInfo{};
+	pipelineInfo.sType = VK_STRUCTURE_TYPE_GRAPHICS_PIPELINE_CREATE_INFO;
+	pipelineInfo.pNext = nullptr;
+	pipelineInfo.stageCount = _shaderStages.size();
+	pipelineInfo.pStages = _shaderStages.data();
+	pipelineInfo.pVertexInputState = &_vertexInputInfo;
+	pipelineInfo.pInputAssemblyState = &_inputAssembly;
+	pipelineInfo.pViewportState = &viewPortState;
+	pipelineInfo.pRasterizationState = &_rasterizer;
+	pipelineInfo.pMultisampleState = &_multisampling;
+	pipelineInfo.pColorBlendState = &colorBlending;
+	pipelineInfo.layout = _pipelineLayout;
+	pipelineInfo.renderPass = pass;
+	pipelineInfo.subpass = 0;
+	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
+
+	VkPipeline newPipeline{};
+	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &newPipeline) != VK_SUCCESS)
+	{
+		std::cout << "failed to create pipeline\n";
+		return VK_NULL_HANDLE; 
+	}
+	return newPipeline;
 }

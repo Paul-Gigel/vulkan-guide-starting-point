@@ -28,6 +28,9 @@ private:
 
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
+
+	VkPipelineLayout _trianglePipelineLayout;
+	VkPipeline _trianglePipeline;
 public:
 
 	bool _isInitialized{ false };

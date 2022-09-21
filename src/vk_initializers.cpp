@@ -79,4 +79,16 @@ namespace vkinit {
 		colorBlendAttachment.blendEnable = VK_FALSE;
 		return colorBlendAttachment;
 	}
+	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo() {
+		VkPipelineLayoutCreateInfo info{};
+		info.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
+		info.pNext = nullptr;
+		//default ->no pushconstants or descriptorsets
+		info.flags = 0;
+		info.setLayoutCount = 0;
+		info.pSetLayouts = nullptr;
+		info.pushConstantRangeCount = 0;
+		info.pPushConstantRanges = nullptr;
+		return info;
+	}
 }

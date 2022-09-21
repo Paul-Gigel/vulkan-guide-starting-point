@@ -22,3 +22,11 @@
 2	669	6852797542525321	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
 8	1166	6852797547456893	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
 1166	1419	6852797549617044	../../../bin/vulkan_guide.exe	9c9f5c0339c3754f
+11	450	6854521992008106	src/CMakeFiles/vulkan_guide.dir/vk_initializers.cpp.obj	1d2c7eb28fd8906f
+7	891	6854521996401183	src/CMakeFiles/vulkan_guide.dir/vk_Pipeline.cpp.obj	931be7949716f6f4
+2	1139	6854521998869379	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+1139	1556	6854522001574599	../../../bin/vulkan_guide.exe	9c9f5c0339c3754f
+1	612	6854536424354948	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+6	1150	6854536429721587	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+2	119	6854537335498041	src/CMakeFiles/vulkan_guide.dir/vk_initializers.cpp.obj	1d2c7eb28fd8906f
+120	408	6854537337970100	../../../bin/vulkan_guide.exe	9c9f5c0339c3754f
