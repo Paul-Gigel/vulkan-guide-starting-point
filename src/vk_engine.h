@@ -32,14 +32,15 @@ private:
 	VkPipelineLayout _trianglePipelineLayout;
 	VkPipeline _trianglePipeline;
 public:
-
+	const char* vertPath = "../shaders/coloredTriangle.vert.spv";
+	const char* fragPath = "../shaders/coloredTriangle.frag.spv";
 	bool _isInitialized{ false };
 	int _frameNumber {0};
 
 	VkExtent2D _windowExtent{ 1700 , 900 };
 
 	struct SDL_Window* _window{ nullptr };
-
+public:
 	//initializes everything in the engine
 	void init();
 

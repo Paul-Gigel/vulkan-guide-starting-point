@@ -38,7 +38,7 @@ include CMakeFiles\rules.ninja
 #############################################
 # Utility command for Shaders
 
-build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
 
 
 #############################################
@@ -67,7 +67,25 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 #############################################
 # Phony custom command for CMakeFiles\Shaders
 
-build CMakeFiles\Shaders: phony ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build CMakeFiles\Shaders: phony ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+
+
+#############################################
+# Custom command for ..\..\..\shaders\coloredTriangle.frag.spv
+
+build ..\..\..\shaders\coloredTriangle.frag.spv: CUSTOM_COMMAND ..\..\..\shaders\coloredTriangle.frag
+  COMMAND = cmd.exe /C "cd /D C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\out\build\x64-Debug && C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.frag.spv"
+  DESC = Generating ../../../shaders/coloredTriangle.frag.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\coloredTriangle.vert.spv
+
+build ..\..\..\shaders\coloredTriangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\coloredTriangle.vert
+  COMMAND = cmd.exe /C "cd /D C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\out\build\x64-Debug && C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert.spv"
+  DESC = Generating ../../../shaders/coloredTriangle.vert.spv
+  restat = 1
 
 
 #############################################

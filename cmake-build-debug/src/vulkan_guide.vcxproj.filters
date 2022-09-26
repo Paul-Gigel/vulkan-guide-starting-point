@@ -10,6 +10,9 @@
     <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_initializers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_Pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_engine.h">
@@ -19,6 +22,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_initializers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_Pipeline.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
