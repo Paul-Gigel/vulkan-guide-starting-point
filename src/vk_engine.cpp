@@ -27,11 +27,10 @@ VulkanEngine::VulkanEngine() {
 	Pipeline pip1;
 	pip1.vertPath = "../shaders/coloredTriangle.vert.spv";
 	pip1.fragPath = "../shaders/coloredTriangle.frag.spv";
-	Pipeline pip2;
-	pip2.vertPath = "../shaders/triangle.vert.spv";
-	pip2.fragPath = "../shaders/triangle.frag.spv";
 	_pip.push_back(pip1);
-	_pip.push_back(pip2);
+	pip1.vertPath = "../shaders/triangle.vert.spv";
+	pip1.fragPath = "../shaders/triangle.frag.spv";
+	_pip.push_back(pip1);
 }
 void VulkanEngine::init()
 {
@@ -295,7 +294,7 @@ void VulkanEngine::draw()
 	rpBeginInfo.pClearValues = &clearValue;
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
-	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pip[1]._Pipeline);
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pip[0]._Pipeline);
 	vkCmdDraw(cmd, 3, 1, 0, 0);
 
 	vkCmdEndRenderPass(cmd);
