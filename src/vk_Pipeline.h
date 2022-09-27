@@ -3,8 +3,8 @@
 #include <vector>
 struct Pipeline
 {
-	const char* vertPath = "../shaders/coloredTriangle.vert.spv";
-	const char* fragPath = "../shaders/coloredTriangle.frag.spv";
+	const char* vertPath;
+	const char* fragPath;
 	VkPipelineLayout _PipelineLayout;
 	VkPipeline _Pipeline;
 };

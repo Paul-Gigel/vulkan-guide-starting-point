@@ -27,9 +27,8 @@ private:
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 
-	Pipeline _pip;
-	/*VkPipelineLayout _trianglePipelineLayout;
-	VkPipeline _trianglePipeline;*/
+	std::vector<Pipeline> _pip;
+
 public:
 	bool _isInitialized{ false };
 	int _frameNumber {0};
@@ -38,6 +37,7 @@ public:
 
 	struct SDL_Window* _window{ nullptr };
 public:
+	VulkanEngine();
 	//initializes everything in the engine
 	void init();
 
@@ -53,7 +53,7 @@ public:
 
 	void initSyncStructures();
 
-	void initPipelines();
+	void initPipelines(Pipeline*);
 
 	//shuts down the engine
 	void cleanup();
