@@ -163,8 +163,8 @@ void VulkanEngine::initSyncStructures() {
 	VK_CHECK(vkCreateSemaphore(_device, &semaphoreCreateInfo, nullptr, &_renderSemaphore));
 }
 void VulkanEngine::initPipelines() {
-	VkShaderModule triangleFragShader;
-	if (!loadShaderModule(fragPath, &triangleFragShader))
+	VkShaderModule fragShader;
+	if (!loadShaderModule(this->_pip.fragPath, &fragShader))
 	{
 		std::cout << "Error when building the triangle fragment shader module" << std::endl;
 	}
@@ -172,8 +172,8 @@ void VulkanEngine::initPipelines() {
 	{
 		std::cout << "Triangle fragment shader successfully loaded" << std::endl;
 	}
-	VkShaderModule triangleVertexShader;
-	if (!loadShaderModule(vertPath, &triangleVertexShader))
+	VkShaderModule vertShader;
+	if (!loadShaderModule(_pip.vertPath, &vertShader))
 	{
 		std::cout << "Error when building the triangle vertex shader module" << std::endl;
 
@@ -182,17 +182,17 @@ void VulkanEngine::initPipelines() {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
-	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &_trianglePipelineLayout));
+	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &_pip._PipelineLayout));
 	// layout and shader modules creation
 
 //build the stage-create-info for both vertex and fragment stages. This lets the pipeline know the shader modules per stage
 	PipelineBuilder pipelineBuilder;
 
 	pipelineBuilder._shaderStages.push_back(
-		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, triangleVertexShader));
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
 
 	pipelineBuilder._shaderStages.push_back(
-		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, triangleFragShader));
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
 
 
 	//vertex input controls how to read vertices from vertex buffers. We aren't using it yet
@@ -223,10 +223,10 @@ void VulkanEngine::initPipelines() {
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
 
 	//use the triangle layout we created
-	pipelineBuilder._pipelineLayout = _trianglePipelineLayout;
+	pipelineBuilder._pipelineLayout = _pip._PipelineLayout;
 
 	//finally build the pipeline
-	_trianglePipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
+	_pip._Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
 }
 void VulkanEngine::cleanup()
 {	
@@ -282,7 +282,7 @@ void VulkanEngine::draw()
 	rpBeginInfo.pClearValues = &clearValue;
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
-	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _trianglePipeline);
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, (VkPipeline)_pip._Pipeline);
 	vkCmdDraw(cmd, 3, 1, 0, 0);
 
 	vkCmdEndRenderPass(cmd);

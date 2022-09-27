@@ -1,9 +1,7 @@
-﻿// vulkan_guide.h : Include file for standard system include files,
-// or project specific include files.
-
-#pragma once
+﻿#pragma once
 
 #include <vk_types.h>
+#include <vk_Pipeline.h>
 #include <vector>
 class VulkanEngine {
 private:
@@ -29,11 +27,10 @@ private:
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 
-	VkPipelineLayout _trianglePipelineLayout;
-	VkPipeline _trianglePipeline;
+	Pipeline _pip;
+	/*VkPipelineLayout _trianglePipelineLayout;
+	VkPipeline _trianglePipeline;*/
 public:
-	const char* vertPath = "../shaders/coloredTriangle.vert.spv";
-	const char* fragPath = "../shaders/coloredTriangle.frag.spv";
 	bool _isInitialized{ false };
 	int _frameNumber {0};
 

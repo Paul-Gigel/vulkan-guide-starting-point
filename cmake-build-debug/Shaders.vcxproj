@@ -220,7 +220,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\triangle.frag.spv.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating ../shaders/triangle.frag.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -228,12 +228,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating ../shaders/triangle.frag.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -241,12 +241,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating ../shaders/triangle.frag.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -254,12 +254,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating ../shaders/triangle.frag.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -267,7 +267,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.frag.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
@@ -276,7 +276,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\triangle.vert.spv.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Generating ../shaders/triangle.vert.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -284,12 +284,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Generating ../shaders/triangle.vert.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -297,12 +297,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Generating ../shaders/triangle.vert.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -310,12 +310,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Generating ../shaders/triangle.vert.spv</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/debu/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -323,7 +323,7 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\debu\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert;%(AdditionalInputs)</AdditionalInputs>
       <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\shaders\triangle.vert.spv</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>

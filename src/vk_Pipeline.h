@@ -1,5 +1,13 @@
+#pragma once
 #include "vk_types.h"
 #include <vector>
+struct Pipeline
+{
+	const char* vertPath = "../shaders/coloredTriangle.vert.spv";
+	const char* fragPath = "../shaders/coloredTriangle.frag.spv";
+	VkPipelineLayout _PipelineLayout;
+	VkPipeline _Pipeline;
+};
 class PipelineBuilder {
 public:
 	std::vector<VkPipelineShaderStageCreateInfo> _shaderStages;

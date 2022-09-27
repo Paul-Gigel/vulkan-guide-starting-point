@@ -9,7 +9,7 @@ The output was:
 Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
 Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
 
-Der Buildvorgang wurde am 17.09.2022 11:42:00 gestartet.
+Der Buildvorgang wurde am 27.09.2022 13:20:27 gestartet.
 Projekt "C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\3.23.2\CompilerIdC\CompilerIdC.vcxproj" auf Knoten "1" (Standardziele).
 PrepareForBuild:
   Das Verzeichnis "Debug\" wird erstellt.
@@ -35,7 +35,7 @@ Der Buildvorgang wurde erfolgreich ausgefhrt.
     0 Warnung(en)
     0 Fehler
 
-Verstrichene Zeit 00:00:00.86
+Verstrichene Zeit 00:00:02.26
 
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -54,7 +54,7 @@ The output was:
 Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
 Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
 
-Der Buildvorgang wurde am 17.09.2022 11:42:01 gestartet.
+Der Buildvorgang wurde am 27.09.2022 13:20:30 gestartet.
 Projekt "C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\3.23.2\CompilerIdCXX\CompilerIdCXX.vcxproj" auf Knoten "1" (Standardziele).
 PrepareForBuild:
   Das Verzeichnis "Debug\" wird erstellt.
@@ -80,7 +80,7 @@ Der Buildvorgang wurde erfolgreich ausgefhrt.
     0 Warnung(en)
     0 Fehler
 
-Verstrichene Zeit 00:00:00.66
+Verstrichene Zeit 00:00:01.78
 
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
@@ -92,28 +92,28 @@ The CXX compiler identification is MSVC, found in "C:/Users/p.gigel/CLionProject
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_5458f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_8c60d.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
 Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
 
   Microsoft (R) C/C++-Optimierungscompiler Version 19.29.30133 fr x64
   Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
   CMakeCCompilerABI.c
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_5458f.dir\Debug\\" /Fd"cmTC_5458f.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCCompilerABI.c"
-  cmTC_5458f.vcxproj -> C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\CMakeTmp\Debug\cmTC_5458f.exe
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"cmTC_8c60d.dir\Debug\\" /Fd"cmTC_8c60d.dir\Debug\vc142.pdb" /external:W3 /Gd /TC /errorReport:queue "C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCCompilerABI.c"
+  cmTC_8c60d.vcxproj -> C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\CMakeTmp\Debug\cmTC_8c60d.exe
 
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/CMakeTmp
 
-Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_69145.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
+Run Build Command(s):C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/MSBuild/Current/Bin/MSBuild.exe cmTC_ff083.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=16.0 /v:m && Microsoft (R)-Build-Engine, Version 16.11.0+0538acc04 fr .NET Framework
 Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
 
   Microsoft (R) C/C++-Optimierungscompiler Version 19.29.30133 fr x64
   Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.
   CMakeCXXCompilerABI.cpp
-  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_69145.dir\Debug\\" /Fd"cmTC_69145.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXCompilerABI.cpp"
-  cmTC_69145.vcxproj -> C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\CMakeTmp\Debug\cmTC_69145.exe
+  cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\"Debug\"" /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_ff083.dir\Debug\\" /Fd"cmTC_ff083.dir\Debug\vc142.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\Program Files\CMake\share\cmake-3.23\Modules\CMakeCXXCompilerABI.cpp"
+  cmTC_ff083.vcxproj -> C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug\CMakeFiles\CMakeTmp\Debug\cmTC_ff083.exe
 
 
 
