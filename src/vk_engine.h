@@ -3,6 +3,21 @@
 #include <vk_types.h>
 #include <vk_Pipeline.h>
 #include <vector>
+#include <queue>
+#include <functional>
+struct DeletionQueue {
+	std::deque<std::function<void()>> deletors;
+	void pushFunktion(std::function<void()>&& funktion) {
+		deletors.push_back(funktion);
+	}
+	void flush() {
+		for (auto it = deletors.rbegin(); it != deletors.rend();it++)
+		{
+			(*it)();
+		}
+		deletors.clear();
+	}
+};
 class VulkanEngine {
 private:
 	VkInstance _instance;
@@ -29,6 +44,7 @@ private:
 
 	std::vector<Pipeline> _pip;
 
+	DeletionQueue _mainDelQueue;
 public:
 	bool _isInitialized{ false };
 	int _selectPipe =0;

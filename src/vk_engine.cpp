@@ -105,6 +105,10 @@ void VulkanEngine::initSwapchain() {
 	_swapchainImageFormat = vkbSwapchain.image_format;
 	_swapchainImages = vkbSwapchain.get_images().value();
 	_swapchainImageViews = vkbSwapchain.get_image_views().value();
+
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
+	});
 }
 void VulkanEngine::initCommands() {
 	VkCommandPoolCreateInfo commandPoolInfo = vkinit::commandPoolCreateInfo(_graphicsQueueFamily, VK_COMMAND_POOL_CREATE_RESET_COMMAND_BUFFER_BIT);
@@ -112,6 +116,10 @@ void VulkanEngine::initCommands() {
 
 	VkCommandBufferAllocateInfo allocInfo = vkinit::commandBufferAllocInfo(_commandPool, 1);
 	VK_CHECK(vkAllocateCommandBuffers(_device, &allocInfo, &_mainCommandBuffer));
+
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroyCommandPool(_device, _commandPool, nullptr);
+	});
 }
 void VulkanEngine::initDefaultRenderPass() {
 	VkAttachmentDescription color_attachment = {};						// the renderpass will use this color attachment.
@@ -141,6 +149,10 @@ void VulkanEngine::initDefaultRenderPass() {
 	renderPassInfo.pSubpasses = &subpass;
 
 	VK_CHECK(vkCreateRenderPass(_device, &renderPassInfo, nullptr, &_renderPass));
+
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroyRenderPass(_device, _renderPass, nullptr);
+	});
 }
 void VulkanEngine::initFrameBuffers() {
 	VkFramebufferCreateInfo fpInfo{};
@@ -158,21 +170,26 @@ void VulkanEngine::initFrameBuffers() {
 	{
 		fpInfo.pAttachments = &_swapchainImageViews[i];
 		VK_CHECK(vkCreateFramebuffer(_device, &fpInfo, nullptr, &_frameBuffers[i]));
+		_mainDelQueue.pushFunktion([=]() {
+			vkDestroyFramebuffer(_device, _frameBuffers[i], nullptr);
+			vkDestroyImageView(_device, _swapchainImageViews[i], nullptr);
+		});
 	}
 };
 void VulkanEngine::initSyncStructures() {
-	VkFenceCreateInfo fenceCreateInfo{};
-	fenceCreateInfo.sType = VK_STRUCTURE_TYPE_FENCE_CREATE_INFO;
-	fenceCreateInfo.pNext = nullptr;
-	fenceCreateInfo.flags = VK_FENCE_CREATE_SIGNALED_BIT;
+	VkFenceCreateInfo fenceCreateInfo = vkinit::fenceCreateInfo(VK_FENCE_CREATE_SIGNALED_BIT);
 	VK_CHECK(vkCreateFence(_device, &fenceCreateInfo, nullptr, &_renderFence));
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroyFence(_device, _renderFence, nullptr);
+	});
 
-	VkSemaphoreCreateInfo semaphoreCreateInfo{};
-	semaphoreCreateInfo.sType = VK_STRUCTURE_TYPE_SEMAPHORE_CREATE_INFO;
-	semaphoreCreateInfo.pNext = nullptr;
-	semaphoreCreateInfo.flags = 0;
+	VkSemaphoreCreateInfo semaphoreCreateInfo = vkinit::semaphoreCreateInfo(0);
 	VK_CHECK(vkCreateSemaphore(_device, &semaphoreCreateInfo, nullptr, &_presentSemaphore));
 	VK_CHECK(vkCreateSemaphore(_device, &semaphoreCreateInfo, nullptr, &_renderSemaphore));
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroySemaphore(_device, _renderSemaphore, nullptr);
+		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
+	});
 }
 void VulkanEngine::initPipelines(Pipeline *pip) {
 	VkShaderModule fragShader;
@@ -193,70 +210,45 @@ void VulkanEngine::initPipelines(Pipeline *pip) {
 	else {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
+
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
 	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &pip->_PipelineLayout));
-	// layout and shader modules creation
-
-//build the stage-create-info for both vertex and fragment stages. This lets the pipeline know the shader modules per stage
+	
 	PipelineBuilder pipelineBuilder;
-
 	pipelineBuilder._shaderStages.push_back(
 		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
-
 	pipelineBuilder._shaderStages.push_back(
 		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
-
-
-	//vertex input controls how to read vertices from vertex buffers. We aren't using it yet
 	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
-
-	//input assembly is the configuration for drawing triangle lists, strips, or individual points.
-	//we are just going to draw triangle list
 	pipelineBuilder._inputAssembly = vkinit::inputAssemblyStateCreateInfo(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST);
-
-	//build viewport and scissor from the swapchain extents
 	pipelineBuilder._viewport.x = 0.0f;
 	pipelineBuilder._viewport.y = 0.0f;
 	pipelineBuilder._viewport.width = (float)_windowExtent.width;
 	pipelineBuilder._viewport.height = (float)_windowExtent.height;
 	pipelineBuilder._viewport.minDepth = 0.0f;
 	pipelineBuilder._viewport.maxDepth = 1.0f;
-
 	pipelineBuilder._scissor.offset = { 0, 0 };
 	pipelineBuilder._scissor.extent = _windowExtent;
-
-	//configure the rasterizer to draw filled triangles
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
-
-	//we don't use multisampling, so just run the default one
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
-
-	//a single blend attachment with no blending and writing to RGBA
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
-
-	//use the triangle layout we created
 	pipelineBuilder._pipelineLayout = pip->_PipelineLayout;
-
-	//finally build the pipeline
 	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
+	
+	vkDestroyShaderModule(_device, vertShader, nullptr);
+	vkDestroyShaderModule(_device, fragShader, nullptr);
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroyPipeline(_device, pip->_Pipeline, nullptr);
+		vkDestroyPipelineLayout(_device, pip->_PipelineLayout, nullptr);
+	});
 }
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
 		vkDeviceWaitIdle(_device);
-		vkDestroyFence(_device, _renderFence, nullptr);
-		vkDestroySemaphore(_device, _renderSemaphore, nullptr);
-		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
-		for (size_t i = 0; i < _frameBuffers.size(); i++)
-		{
-			vkDestroyFramebuffer(_device, _frameBuffers[i], nullptr);
-			vkDestroyImageView(_device, _swapchainImageViews[i], nullptr);
-		}
-		vkDestroyRenderPass(_device, _renderPass, nullptr);
-		vkDestroyCommandPool(_device, _commandPool, nullptr);
-		vkDestroySwapchainKHR(_device, _swapchain, nullptr);
-		vkDestroyDevice(_device, nullptr);
+		_mainDelQueue.flush();
 		vkDestroySurfaceKHR(_instance, _surface, nullptr);
+		vkDestroyDevice(_device, nullptr);
 		vkb::destroy_debug_utils_messenger(_instance, _debugMessanger, nullptr);
 		vkDestroyInstance(_instance, nullptr);   
 		SDL_DestroyWindow(_window);
