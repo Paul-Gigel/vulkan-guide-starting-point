@@ -294,7 +294,7 @@ void VulkanEngine::draw()
 	rpBeginInfo.pClearValues = &clearValue;
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
-	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pip[0]._Pipeline);
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pip[_selectPipe]._Pipeline);
 	vkCmdDraw(cmd, 3, 1, 0, 0);
 
 	vkCmdEndRenderPass(cmd);
@@ -338,8 +338,17 @@ void VulkanEngine::run()
 		{
 			//close the window when user alt-f4s or clicks the X button			
 			if (e.type == SDL_QUIT) bQuit = true;
+			else if (e.type == SDL_KEYDOWN)
+			{
+				if (e.key.keysym.sym == SDLK_SPACE)
+				{
+					_selectPipe++;
+					_selectPipe = _selectPipe % _pip.size();
+				}
+			}
 		}
-
+		/*_selectPipe++;
+		_selectPipe = _selectPipe % _pip.size();*/
 		draw();
 	}
 }

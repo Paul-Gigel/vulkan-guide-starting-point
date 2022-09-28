@@ -31,6 +31,7 @@ private:
 
 public:
 	bool _isInitialized{ false };
+	int _selectPipe =0;
 	int _frameNumber {0};
 
 	VkExtent2D _windowExtent{ 1700 , 900 };
