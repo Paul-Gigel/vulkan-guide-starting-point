@@ -44,6 +44,8 @@ private:
 
 	std::vector<Pipeline> _pip;
 
+	VmaAllocator _allocator;
+
 	DeletionQueue _mainDelQueue;
 public:
 	bool _isInitialized{ false };

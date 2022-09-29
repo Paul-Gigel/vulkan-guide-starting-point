@@ -9,7 +9,8 @@
 #include <vk_types.h>
 #include <vk_initializers.h>
 #include <vk_Pipeline.h>
-
+#define VMA_IMPLEMENTATION
+#include <vk_mem_alloc.h>
 #include "VkBootstrap.h"
 
 using namespace std;
@@ -91,6 +92,12 @@ void VulkanEngine::initVulkan() {
 	_graphicsQueueFamily = vkbDevice
 		.get_queue_index(vkb::QueueType::graphics)
 		.value();
+
+	VmaAllocatorCreateInfo allocInfo{};
+	allocInfo.physicalDevice = _chosenGPU;
+	allocInfo.device = _device;
+	allocInfo.instance = _instance;
+	vmaCreateAllocator(&allocInfo, &_allocator);
 }
 void VulkanEngine::initSwapchain() {
 	vkb::SwapchainBuilder swapchainBuilder(_chosenGPU, _device, _surface);
