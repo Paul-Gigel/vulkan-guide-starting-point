@@ -4,6 +4,7 @@
 #include <vk_Pipeline.h>
 #include <vector>
 #include <queue>
+#include <tuple>
 #include <functional>
 struct DeletionQueue {
 	std::deque<std::function<void()>> deletors;
@@ -42,6 +43,7 @@ private:
 	VkSemaphore _presentSemaphore, _renderSemaphore;
 	VkFence _renderFence;
 
+	std::vector<PipelineLayout> _PipelineLayouts;
 	std::vector<Pipeline> _pip;
 
 	VmaAllocator _allocator;
@@ -72,7 +74,7 @@ public:
 
 	void initSyncStructures();
 
-	void initPipelines(Pipeline*);
+	void initPipelines(Pipeline*, PipelineLayout*);
 
 	//shuts down the engine
 	void cleanup();

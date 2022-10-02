@@ -55,9 +55,13 @@ void VulkanEngine::init()
 	initDefaultRenderPass();
 	initFrameBuffers();
 	initSyncStructures();
+	PipelineLayout lay;
+	//PipelineLayout::plCounter++;
+	(*lay.plCounter)++;
+	_PipelineLayouts.push_back(lay);
 	for (Pipeline& pip : _pip)
 	{
-		initPipelines(&pip);
+		initPipelines(&pip, &_PipelineLayouts[0]);
 	}
 	//everything went fine
 	_isInitialized = true;
@@ -198,7 +202,7 @@ void VulkanEngine::initSyncStructures() {
 		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
 	});
 }
-void VulkanEngine::initPipelines(Pipeline *pip) {
+void VulkanEngine::initPipelines(Pipeline *pip, PipelineLayout *lay) {
 	VkShaderModule fragShader;
 	if (!loadShaderModule(pip->fragPath, &fragShader))
 	{
@@ -219,7 +223,7 @@ void VulkanEngine::initPipelines(Pipeline *pip) {
 	}
 
 	VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
-	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &pip->_PipelineLayout));
+	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &lay->_PipelineLayout));
 	
 	PipelineBuilder pipelineBuilder;
 	pipelineBuilder._shaderStages.push_back(
@@ -239,15 +243,21 @@ void VulkanEngine::initPipelines(Pipeline *pip) {
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
-	pipelineBuilder._pipelineLayout = pip->_PipelineLayout;
+	pipelineBuilder._pipelineLayout = lay->_PipelineLayout;
 	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
 	
 	vkDestroyShaderModule(_device, vertShader, nullptr);
 	vkDestroyShaderModule(_device, fragShader, nullptr);
 	_mainDelQueue.pushFunktion([=]() {
 		vkDestroyPipeline(_device, pip->_Pipeline, nullptr);
-		vkDestroyPipelineLayout(_device, pip->_PipelineLayout, nullptr);
 	});
+	if (*lay->plCounter != 0)
+	{
+		_mainDelQueue.pushFunktion([=]() {
+			vkDestroyPipelineLayout(_device, lay->_PipelineLayout, nullptr);
+		});
+		(*lay->plCounter)--;
+	}
 }
 void VulkanEngine::cleanup()
 {	
