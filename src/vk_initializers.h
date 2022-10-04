@@ -11,7 +11,11 @@ namespace vkinit {
 	VkPipelineRasterizationStateCreateInfo rasterizationStateCreateInfo(VkPolygonMode polygonMode);
 	VkPipelineMultisampleStateCreateInfo multisampleStateCreateInfo();
 	VkPipelineColorBlendAttachmentState colorBlendAttachment();
-	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo();
+	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo(VkPipelineLayoutCreateFlags flags =0,
+		uint32_t setLayoutCount =0,
+		const VkDescriptorSetLayout* pSetLayouts =nullptr,
+		uint32_t pushConstantRangeCount =0,
+		const VkPushConstantRange* pPushConstantRanges = nullptr);
 	VkFenceCreateInfo fenceCreateInfo(VkFenceCreateFlags);
 	VkSemaphoreCreateInfo semaphoreCreateInfo(VkSemaphoreCreateFlags);
 

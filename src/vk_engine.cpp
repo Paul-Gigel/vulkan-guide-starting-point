@@ -13,6 +13,7 @@
 #include <vk_mem_alloc.h>
 #include "VkBootstrap.h"
 
+
 using namespace std;
 #define	VK_CHECK(x)\
 	do\
@@ -58,7 +59,9 @@ void VulkanEngine::init()
 	PipelineLayout lay;
 	//PipelineLayout::plCounter++;
 	(*lay.plCounter)++;
+	//(*lay.plCounter)++;
 	_PipelineLayouts.push_back(lay);
+	//_PipelineLayouts.push_back(lay);
 	for (Pipeline& pip : _pip)
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
@@ -176,7 +179,6 @@ void VulkanEngine::initFrameBuffers() {
 	fpInfo.layers = 1;
 	const uint32_t swapchainImageCount = _swapchainImages.size();
 	_frameBuffers = std::vector<VkFramebuffer>(swapchainImageCount);
-	std::cout << swapchainImageCount << "\n";							//______________________________________________________________------------------------_
 	for (size_t i = 0; i < swapchainImageCount; i++)
 	{
 		fpInfo.pAttachments = &_swapchainImageViews[i];
@@ -202,7 +204,7 @@ void VulkanEngine::initSyncStructures() {
 		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
 	});
 }
-void VulkanEngine::initPipelines(Pipeline *pip, PipelineLayout *lay) {
+void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	VkShaderModule fragShader;
 	if (!loadShaderModule(pip->fragPath, &fragShader))
 	{
@@ -221,15 +223,10 @@ void VulkanEngine::initPipelines(Pipeline *pip, PipelineLayout *lay) {
 	else {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
-
-	VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
-	VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &lay->_PipelineLayout));
 	
 	PipelineBuilder pipelineBuilder;
-	pipelineBuilder._shaderStages.push_back(
-		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
-	pipelineBuilder._shaderStages.push_back(
-		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
+	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
+	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
 	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
 	pipelineBuilder._inputAssembly = vkinit::inputAssemblyStateCreateInfo(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST);
 	pipelineBuilder._viewport.x = 0.0f;
@@ -243,7 +240,13 @@ void VulkanEngine::initPipelines(Pipeline *pip, PipelineLayout *lay) {
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
-	pipelineBuilder._pipelineLayout = lay->_PipelineLayout;
+	if ((lay->_PipelineLayout) == VK_NULL_HANDLE)																					//
+	{
+		pipelineBuilder._pipelineLayout = lay->_PipelineLayout;																		//	
+		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();											//	
+		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo);															// NOT READY !?!?!?!?!?!!!
+		//VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &lay->_PipelineLayout));							//
+	}																																//
 	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
 	
 	vkDestroyShaderModule(_device, vertShader, nullptr);
@@ -253,11 +256,16 @@ void VulkanEngine::initPipelines(Pipeline *pip, PipelineLayout *lay) {
 	});
 	if (*lay->plCounter != 0)
 	{
-		_mainDelQueue.pushFunktion([=]() {
-			vkDestroyPipelineLayout(_device, lay->_PipelineLayout, nullptr);
+		_mainDelQueue.pushFunktion([=, PipelineLayout = lay->_PipelineLayout]() {
+			vkDestroyPipelineLayout(_device, PipelineLayout , nullptr);
 		});
+		std::cout << *_PipelineLayouts[0].plCounter << std::endl;
 		(*lay->plCounter)--;
+		std::cout << *_PipelineLayouts[0].plCounter << std::endl<<std::endl;
 	}
+}
+void initLayouts(VkPipelineLayout* const Layouts, std::size_t size, ) {
+
 }
 void VulkanEngine::cleanup()
 {	

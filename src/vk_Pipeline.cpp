@@ -42,3 +42,6 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
 	}
 	return newPipeline;
 }
+VkPipeline PipelineLayoutBuilder::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo) {
+	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &_pipelineLayout);
+}

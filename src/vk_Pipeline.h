@@ -7,22 +7,23 @@ struct PipelineLayout
 		static int plCounterr;
 		plCounter = &plCounterr;
 	}
-	/*int& plCounter() const {
-		static int plCounter;
-		return plCounter;
-	}*/
 	int *plCounter;
-	VkPipelineLayout _PipelineLayout;
+	VkPipelineLayout _PipelineLayout = VK_NULL_HANDLE;
 	
 };
 struct Pipeline 
 {
 	const char* vertPath;
 	const char* fragPath;
-	VkPipeline _Pipeline;
+	VkPipeline _Pipeline = VK_NULL_HANDLE;
 };
+class PipelineLayoutBuilder {
+public:
+	VkPipelineLayout _pipelineLayout;
 
-class PipelineBuilder {
+	VkPipeline buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const);
+};
+class PipelineBuilder : public PipelineLayoutBuilder{
 public:
 	std::vector<VkPipelineShaderStageCreateInfo> _shaderStages;
 	VkPipelineVertexInputStateCreateInfo _vertexInputInfo;
@@ -32,7 +33,6 @@ public:
 	VkPipelineRasterizationStateCreateInfo _rasterizer;
 	VkPipelineColorBlendAttachmentState _colorBlendAttachment;
 	VkPipelineMultisampleStateCreateInfo _multisampling;
-	VkPipelineLayout _pipelineLayout;
-
+	
 	VkPipeline buildPipeline(VkDevice, VkRenderPass);
 };

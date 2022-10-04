@@ -79,16 +79,21 @@ namespace vkinit {
 		colorBlendAttachment.blendEnable = VK_FALSE;
 		return colorBlendAttachment;
 	}
-	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo() {
+	VkPipelineLayoutCreateInfo pipelineLayoutCreateInfo(VkPipelineLayoutCreateFlags flags,
+		uint32_t setLayoutCount,
+		const VkDescriptorSetLayout* pSetLayouts,
+		uint32_t pushConstantRangeCount,
+		const VkPushConstantRange* pPushConstantRanges)
+	{
 		VkPipelineLayoutCreateInfo info{};
 		info.sType = VK_STRUCTURE_TYPE_PIPELINE_LAYOUT_CREATE_INFO;
 		info.pNext = nullptr;
 		//default ->no pushconstants or descriptorsets
-		info.flags = 0;
-		info.setLayoutCount = 0;
-		info.pSetLayouts = nullptr;
-		info.pushConstantRangeCount = 0;
-		info.pPushConstantRanges = nullptr;
+		info.flags = flags;
+		info.setLayoutCount = setLayoutCount;
+		info.pSetLayouts = pSetLayouts;
+		info.pushConstantRangeCount = pushConstantRangeCount;
+		info.pPushConstantRanges = pPushConstantRanges;
 		return info;
 	}
 	VkFenceCreateInfo fenceCreateInfo(VkFenceCreateFlags flags) {
