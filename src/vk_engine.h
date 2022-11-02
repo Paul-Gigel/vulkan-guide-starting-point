@@ -44,7 +44,7 @@ private:
 	VkFence _renderFence;
 
 	std::vector<PipelineLayout> _PipelineLayouts;
-	std::vector<Pipeline> _pip;
+	std::vector<Pipeline> _pips;
 
 	VmaAllocator _allocator;
 

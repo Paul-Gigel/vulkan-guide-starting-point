@@ -1,29 +1,24 @@
 #pragma once
 #include "vk_types.h"
 #include <vector>
-struct PipelineLayout
-{	
+struct PipelineLayout final:  public PipelineBuilder
+{
 	PipelineLayout() {
 		static int plCounterr;
 		plCounter = &plCounterr;
 	}
-	int *plCounter;
-	VkPipelineLayout _PipelineLayout = VK_NULL_HANDLE;
-	
+	int* plCounter;
+	VkPipelineLayout _pipelineLayout = VK_NULL_HANDLE;
+	VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const) override;
 };
-struct Pipeline 
+struct Pipeline final: public PipelineBuilder
 {
 	const char* vertPath;
 	const char* fragPath;
 	VkPipeline _Pipeline = VK_NULL_HANDLE;
 };
-class PipelineLayoutBuilder {
-public:
-	VkPipelineLayout _pipelineLayout;
-
-	VkPipeline buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const);
-};
-class PipelineBuilder : public PipelineLayoutBuilder{
+class PipelineBuilder
+{
 public:
 	std::vector<VkPipelineShaderStageCreateInfo> _shaderStages;
 	VkPipelineVertexInputStateCreateInfo _vertexInputInfo;
@@ -35,4 +30,5 @@ public:
 	VkPipelineMultisampleStateCreateInfo _multisampling;
 	
 	VkPipeline buildPipeline(VkDevice, VkRenderPass);
+	virtual VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const) =0; 
 };
