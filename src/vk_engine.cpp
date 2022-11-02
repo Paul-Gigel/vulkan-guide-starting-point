@@ -33,10 +33,6 @@ VulkanEngine::VulkanEngine() {
 	pip1.vertPath = "../shaders/triangle.vert.spv";
 	pip1.fragPath = "../shaders/triangle.frag.spv";
 	_pips.push_back(pip1);
-	PipelineLayout lay1;
-	VkPipelineLayoutCreateInfo  lay1Info = vkinit::pipelineLayoutCreateInfo();
-	lay1.buildPipelineLayout(_device, &lay1Info);
-	_PipelineLayouts.push_back(lay1);
 }
 void VulkanEngine::init()
 {

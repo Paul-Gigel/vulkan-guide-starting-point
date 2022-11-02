@@ -1,18 +1,12 @@
 #pragma once
 #include "vk_types.h"
 #include <vector>
-struct PipelineLayout final:  public PipelineBuilder
+struct PipelineLayout :  public PipelineBuilder
 {
-	PipelineLayout() {
-		static int plCounterr;
-
-		plCounter = &plCounterr;
-	}
-	int* plCounter;
 	VkPipelineLayout _pipelineLayout = VK_NULL_HANDLE;
 	VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const) override;
 };
-struct Pipeline final: public PipelineBuilder
+struct Pipeline
 {
 	const char* vertPath;
 	const char* fragPath;
