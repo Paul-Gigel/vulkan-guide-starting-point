@@ -5,6 +5,7 @@ struct PipelineLayout final:  public PipelineBuilder
 {
 	PipelineLayout() {
 		static int plCounterr;
+
 		plCounter = &plCounterr;
 	}
 	int* plCounter;
