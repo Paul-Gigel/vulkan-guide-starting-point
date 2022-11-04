@@ -29,10 +29,10 @@ VulkanEngine::VulkanEngine() {
 	Pipeline pip1;
 	pip1.vertPath = "../shaders/coloredTriangle.vert.spv";
 	pip1.fragPath = "../shaders/coloredTriangle.frag.spv";
-	_pip.push_back(pip1);
+	_pips.push_back(pip1);
 	pip1.vertPath = "../shaders/triangle.vert.spv";
 	pip1.fragPath = "../shaders/triangle.frag.spv";
-	_pip.push_back(pip1);
+	_pips.push_back(pip1);
 }
 void VulkanEngine::init()
 {
@@ -57,12 +57,9 @@ void VulkanEngine::init()
 	initFrameBuffers();
 	initSyncStructures();
 	PipelineLayout lay;
-	//PipelineLayout::plCounter++;
 	(*lay.plCounter)++;
-	//(*lay.plCounter)++;
 	_PipelineLayouts.push_back(lay);
-	//_PipelineLayouts.push_back(lay);
-	for (Pipeline& pip : _pip)
+	for (Pipeline& pip : _pips)
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
 	}
@@ -224,7 +221,15 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
 	
-	PipelineBuilder pipelineBuilder;
+	PipelineBuilder* pipelineBuilder;
+	void* piplay = (&(*pip), &(*lay));
+	*pipelineBuilder = *(PipelineBuilder*)piplay;
+#define pipelineBuilder (*pipelineBuilder)
+	if ((lay->_pipelineLayout) == VK_NULL_HANDLE)	// default layout, if nothing
+	{
+		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
+		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo);
+	}
 	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
 	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
 	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
@@ -239,14 +244,7 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	pipelineBuilder._scissor.extent = _windowExtent;
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
-	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
-	if ((lay->_PipelineLayout) == VK_NULL_HANDLE)																					//
-	{
-		pipelineBuilder._pipelineLayout = lay->_PipelineLayout;																		//	
-		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();											//	
-		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo);															// NOT READY !?!?!?!?!?!!!
-		//VK_CHECK(vkCreatePipelineLayout(_device, &pipelineLayoutInfo, nullptr, &lay->_PipelineLayout));							//
-	}																																//
+	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();																															//
 	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
 	
 	vkDestroyShaderModule(_device, vertShader, nullptr);
@@ -256,17 +254,15 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	});
 	if (*lay->plCounter != 0)
 	{
-		_mainDelQueue.pushFunktion([=, PipelineLayout = lay->_PipelineLayout]() {
+		_mainDelQueue.pushFunktion([=, PipelineLayout = lay->_pipelineLayout]() {
 			vkDestroyPipelineLayout(_device, PipelineLayout , nullptr);
 		});
 		std::cout << *_PipelineLayouts[0].plCounter << std::endl;
 		(*lay->plCounter)--;
 		std::cout << *_PipelineLayouts[0].plCounter << std::endl<<std::endl;
 	}
-}
-void initLayouts(VkPipelineLayout* const Layouts, std::size_t size, ) {
-
-}
+#undef pipelineBuilder
+} 
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
@@ -311,7 +307,7 @@ void VulkanEngine::draw()
 	rpBeginInfo.pClearValues = &clearValue;
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
-	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pip[_selectPipe]._Pipeline);
+	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pips[_selectPipe]._Pipeline);
 	vkCmdDraw(cmd, 3, 1, 0, 0);
 
 	vkCmdEndRenderPass(cmd);
@@ -360,7 +356,7 @@ void VulkanEngine::run()
 				if (e.key.keysym.sym == SDLK_SPACE)
 				{
 					_selectPipe++;
-					_selectPipe = _selectPipe % _pip.size();
+					_selectPipe = _selectPipe % _pips.size();
 				}
 			}
 		}

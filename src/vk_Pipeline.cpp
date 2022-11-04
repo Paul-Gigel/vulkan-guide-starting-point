@@ -29,19 +29,19 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
 	pipelineInfo.pRasterizationState = &_rasterizer;
 	pipelineInfo.pMultisampleState = &_multisampling;
 	pipelineInfo.pColorBlendState = &colorBlending;
-	pipelineInfo.layout = _pipelineLayout;
+	pipelineInfo.layout = PipelineLayout::_pipelineLayout;
 	pipelineInfo.renderPass = pass;
 	pipelineInfo.subpass = 0;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-	VkPipeline newPipeline{};
-	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &newPipeline) != VK_SUCCESS)
+	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &_Pipeline) != VK_SUCCESS)
 	{
 		std::cout << "failed to create pipeline\n";
 		return VK_NULL_HANDLE; 
 	}
-	return newPipeline;
+	return _Pipeline;
 }
-VkPipeline PipelineLayoutBuilder::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo) {
+VkPipelineLayout PipelineLayout::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo) {
 	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &_pipelineLayout);
+	return _pipelineLayout;
 }
