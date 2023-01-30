@@ -1,10 +1,9 @@
 #pragma once
 #include "vk_types.h"
 #include <vector>
-struct PipelineLayout :  public PipelineBuilder
+struct PipelineLayout
 {
 	VkPipelineLayout _pipelineLayout = VK_NULL_HANDLE;
-	VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const) override;
 };
 struct Pipeline
 {
@@ -24,6 +23,6 @@ public:
 	VkPipelineColorBlendAttachmentState _colorBlendAttachment;
 	VkPipelineMultisampleStateCreateInfo _multisampling;
 	
-	VkPipeline buildPipeline(VkDevice, VkRenderPass);
-	virtual VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const) =0; 
+	VkPipeline buildPipeline(VkDevice, VkRenderPass, Pipeline&, PipelineLayout&);
+	VkPipelineLayout buildPipelineLayout(VkDevice, VkPipelineLayoutCreateInfo* const, PipelineLayout&);
 };

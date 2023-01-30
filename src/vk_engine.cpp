@@ -1,5 +1,4 @@
-﻿
-#include "vk_engine.h"
+﻿#include "vk_engine.h"
 
 #include <SDL.h>
 #include <SDL_vulkan.h>
@@ -56,6 +55,8 @@ void VulkanEngine::init()
 	initDefaultRenderPass();
 	initFrameBuffers();
 	initSyncStructures();
+	_PipelineLayouts.push_back({});
+	initPipelineLayouts(&_PipelineLayouts[0]);
 	for (Pipeline& pip : _pips)									//begin here to refaktor (i guess)
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
@@ -198,6 +199,14 @@ void VulkanEngine::initSyncStructures() {
 		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
 	});
 }
+void VulkanEngine::initPipelineLayouts(PipelineLayout* lay) {
+	if ((lay) == nullptr)	// default layout, if nothing
+	{
+		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
+		PipelineBuilder pipelineBuilder;
+		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo, *lay);
+	}
+};
 void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	VkShaderModule fragShader;
 	if (!loadShaderModule(pip->fragPath, &fragShader))
@@ -218,15 +227,7 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
 	
-	PipelineBuilder* pipelineBuilder;
-	void* piplay = (&(*pip), &(*lay));
-	*pipelineBuilder = *(PipelineBuilder*)piplay;
-#define pipelineBuilder (*pipelineBuilder)
-	if ((lay->_pipelineLayout) == VK_NULL_HANDLE)	// default layout, if nothing
-	{
-		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
-		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo);
-	}
+	PipelineBuilder pipelineBuilder;
 	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
 	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
 	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
@@ -242,23 +243,17 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();																															//
-	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass);
+	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass, *pip, *lay);
 	
 	vkDestroyShaderModule(_device, vertShader, nullptr);
 	vkDestroyShaderModule(_device, fragShader, nullptr);
 	_mainDelQueue.pushFunktion([=]() {
 		vkDestroyPipeline(_device, pip->_Pipeline, nullptr);
 	});
-	if (*lay->plCounter != 0)
-	{
-		_mainDelQueue.pushFunktion([=, PipelineLayout = lay->_pipelineLayout]() {
-			vkDestroyPipelineLayout(_device, PipelineLayout , nullptr);
-		});
-		std::cout << *_PipelineLayouts[0].plCounter << std::endl;
-		(*lay->plCounter)--;
-		std::cout << *_PipelineLayouts[0].plCounter << std::endl<<std::endl;
-	}
-#undef pipelineBuilder
+	_mainDelQueue.pushFunktion([=]() {
+		vkDestroyPipelineLayout(_device, lay->_pipelineLayout, nullptr);
+	});
+/*#undef pipelineBuilder*/
 } 
 void VulkanEngine::cleanup()
 {	

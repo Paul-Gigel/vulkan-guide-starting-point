@@ -74,6 +74,8 @@ public:
 
 	void initSyncStructures();
 
+	void initPipelineLayouts(PipelineLayout* lay);
+
 	void initPipelines(Pipeline*, PipelineLayout*);
 
 	//shuts down the engine

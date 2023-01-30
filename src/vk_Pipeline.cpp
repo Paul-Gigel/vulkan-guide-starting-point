@@ -1,6 +1,6 @@
 #include "vk_Pipeline.h"
 #include <iostream>
-VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
+VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass, Pipeline& pipeline, PipelineLayout& pipelineLayout)
 {
 	VkPipelineViewportStateCreateInfo viewPortState{};
 	viewPortState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
@@ -29,19 +29,19 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass)
 	pipelineInfo.pRasterizationState = &_rasterizer;
 	pipelineInfo.pMultisampleState = &_multisampling;
 	pipelineInfo.pColorBlendState = &colorBlending;
-	pipelineInfo.layout = PipelineLayout::_pipelineLayout;
+	pipelineInfo.layout = pipelineLayout._pipelineLayout;
 	pipelineInfo.renderPass = pass;
 	pipelineInfo.subpass = 0;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &_Pipeline) != VK_SUCCESS)
+	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline._Pipeline) != VK_SUCCESS)
 	{
 		std::cout << "failed to create pipeline\n";
 		return VK_NULL_HANDLE; 
 	}
-	return _Pipeline;
+	return pipeline._Pipeline;
 }
-VkPipelineLayout PipelineLayout::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo) {
-	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &_pipelineLayout);
-	return _pipelineLayout;
+VkPipelineLayout PipelineBuilder::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo, PipelineLayout& pipelineLayout) {
+	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &pipelineLayout._pipelineLayout);
+	return pipelineLayout._pipelineLayout;
 }
