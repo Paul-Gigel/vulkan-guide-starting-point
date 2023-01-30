@@ -56,10 +56,7 @@ void VulkanEngine::init()
 	initDefaultRenderPass();
 	initFrameBuffers();
 	initSyncStructures();
-	PipelineLayout lay;
-	(*lay.plCounter)++;
-	_PipelineLayouts.push_back(lay);
-	for (Pipeline& pip : _pips)
+	for (Pipeline& pip : _pips)									//begin here to refaktor (i guess)
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
 	}
