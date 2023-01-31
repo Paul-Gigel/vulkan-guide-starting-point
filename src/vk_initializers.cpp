@@ -1,4 +1,5 @@
 ﻿#include <vk_initializers.h>
+#include <Macros.h>
 namespace vkinit {
 	VkCommandPoolCreateInfo commandPoolCreateInfo(uint32_t queFamilyIndex, VkCommandPoolCreateFlags flags)	{
 		VkCommandPoolCreateInfo commandPoolInfo{};

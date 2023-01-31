@@ -6,6 +6,7 @@
 #include <iostream>
 #include <fstream>
 #include <vk_types.h>
+#include <Macros.h>
 #include <vk_initializers.h>
 #include <vk_Pipeline.h>
 #define VMA_IMPLEMENTATION
@@ -14,16 +15,6 @@
 
 
 using namespace std;
-#define	VK_CHECK(x)\
-	do\
-	{\
-		VkResult err = x;\
-		if (err)\
-		{\
-			std::cout << "detected Vulkan error:	" << err << "\n";\
-			abort();\
-		}\
-	} while (0)
 VulkanEngine::VulkanEngine() {
 	Pipeline pip1;
 	pip1.vertPath = "../shaders/coloredTriangle.vert.spv";

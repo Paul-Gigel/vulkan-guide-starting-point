@@ -1,6 +1,7 @@
 ﻿#pragma once
 
 #include <vk_types.h>
+#include <Macros.h>
 #include <vk_Pipeline.h>
 #include <vector>
 #include <queue>

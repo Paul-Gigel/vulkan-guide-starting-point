@@ -6,7 +6,7 @@ add_executable(vulkan_guide
     vk_engine.h
     vk_types.h
     vk_initializers.cpp
-    vk_initializers.h vk_Pipeline.h vk_Pipeline.cpp "vk_mesh.h" "vk_mash.cpp")
+    vk_initializers.h vk_Pipeline.h vk_Pipeline.cpp "vk_mesh.h" "vk_mash.cpp" "Macros.h")
 
 
 set_property(TARGET vulkan_guide PROPERTY VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:vulkan_guide>")

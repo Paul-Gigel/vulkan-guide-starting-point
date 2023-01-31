@@ -34,14 +34,11 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass, Pi
 	pipelineInfo.subpass = 0;
 	pipelineInfo.basePipelineHandle = VK_NULL_HANDLE;
 
-	if (vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline._Pipeline) != VK_SUCCESS)
-	{
-		std::cout << "failed to create pipeline\n";
-		return VK_NULL_HANDLE; 
-	}
+	VK_CHECK(vkCreateGraphicsPipelines(device, VK_NULL_HANDLE, 1, &pipelineInfo, nullptr, &pipeline._Pipeline));
+	VK_CHECK(VK_TIMEOUT);
 	return pipeline._Pipeline;
 }
 VkPipelineLayout PipelineBuilder::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo, PipelineLayout& pipelineLayout) {
-	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &pipelineLayout._pipelineLayout);
+	VK_CHECK(vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &pipelineLayout._pipelineLayout));
 	return pipelineLayout._pipelineLayout;
 }
