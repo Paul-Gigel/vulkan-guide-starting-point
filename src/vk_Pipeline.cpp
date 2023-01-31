@@ -42,6 +42,8 @@ VkPipeline PipelineBuilder::buildPipeline(VkDevice device, VkRenderPass pass, Pi
 	return pipeline._Pipeline;
 }
 VkPipelineLayout PipelineBuilder::buildPipelineLayout(VkDevice device, VkPipelineLayoutCreateInfo* const pipelineLayoutInfo, PipelineLayout& pipelineLayout) {
-	vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &pipelineLayout._pipelineLayout);
+	if (vkCreatePipelineLayout(device, pipelineLayoutInfo, nullptr, &pipelineLayout._pipelineLayout) == VK_SUCCESS) {
+		std::cout << "vkCreatePipelineLayout SUCCESS\n";
+	};
 	return pipelineLayout._pipelineLayout;
 }

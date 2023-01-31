@@ -67,10 +67,10 @@ void VulkanEngine::init()
 void VulkanEngine::initVulkan() {
 	vkb::InstanceBuilder builder;
 	auto instRet = builder
-		.set_app_name("learning Vulkan")
-		.request_validation_layers(true)
-		.require_api_version(1, 1, 0)
-		.use_default_debug_messenger()
+		.set_app_name("learning Vulkan")		/*some where here [ERROR: General] loader_get_json: Failed to open JSON file C:\Program Files (x86)\Epic Games\Launcher\Portal\Extras\Overlay\EOSOverlayVkLayer-Win32.json*/
+		.request_validation_layers(true)		
+		.require_api_version(1, 1, 0)			
+		.use_default_debug_messenger()			
 		.build();
 	vkb::Instance vkbInst = instRet.value();
 	_instance = vkbInst.instance;
@@ -199,8 +199,8 @@ void VulkanEngine::initSyncStructures() {
 		vkDestroySemaphore(_device, _presentSemaphore, nullptr);
 	});
 }
-void VulkanEngine::initPipelineLayouts(PipelineLayout* lay) {
-	if ((lay) == nullptr)	// default layout, if nothing
+void VulkanEngine::initPipelineLayouts(PipelineLayout* const lay) {
+	if ((lay->_pipelineLayout) == VK_NULL_HANDLE)	// default layout, if nothing
 	{
 		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
 		PipelineBuilder pipelineBuilder;
