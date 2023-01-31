@@ -205,6 +205,9 @@ void VulkanEngine::initPipelineLayouts(PipelineLayout* const lay) {
 		VkPipelineLayoutCreateInfo pipelineLayoutInfo = vkinit::pipelineLayoutCreateInfo();
 		PipelineBuilder pipelineBuilder;
 		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo, *lay);
+		_mainDelQueue.pushFunktion([=]() {
+			vkDestroyPipelineLayout(_device, lay->_pipelineLayout, nullptr);
+		});
 	}
 };
 void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
@@ -249,9 +252,6 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	vkDestroyShaderModule(_device, fragShader, nullptr);
 	_mainDelQueue.pushFunktion([=]() {
 		vkDestroyPipeline(_device, pip->_Pipeline, nullptr);
-	});
-	_mainDelQueue.pushFunktion([=]() {
-		vkDestroyPipelineLayout(_device, lay->_pipelineLayout, nullptr);
 	});
 /*#undef pipelineBuilder*/
 } 
