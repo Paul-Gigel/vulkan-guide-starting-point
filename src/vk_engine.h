@@ -3,6 +3,7 @@
 #include <vk_types.h>
 #include <Macros.h>
 #include <vk_Pipeline.h>
+#include <vk_mesh.h>
 #include <vector>
 #include <queue>
 #include <tuple>
@@ -47,6 +48,8 @@ private:
 	std::vector<PipelineLayout> _PipelineLayouts;
 	std::vector<Pipeline> _pips;
 
+	Mesh _triangleMesh;
+
 	VmaAllocator _allocator;
 
 	DeletionQueue _mainDelQueue;
@@ -78,6 +81,10 @@ public:
 	void initPipelineLayouts(PipelineLayout* lay);
 
 	void initPipelines(Pipeline*, PipelineLayout*);
+
+	void load_meshes();
+
+	void upload_meshes(Mesh& mesh);
 
 	//shuts down the engine
 	void cleanup();

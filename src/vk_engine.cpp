@@ -1,15 +1,13 @@
-﻿#include "vk_engine.h"
-
+﻿#define VMA_IMPLEMENTATION
+#include "vk_engine.h"
 #include <SDL.h>
 #include <SDL_vulkan.h>
-
 #include <iostream>
 #include <fstream>
 #include <vk_types.h>
 #include <Macros.h>
 #include <vk_initializers.h>
 #include <vk_Pipeline.h>
-#define VMA_IMPLEMENTATION
 #include <vk_mem_alloc.h>
 #include "VkBootstrap.h"
 
@@ -52,6 +50,7 @@ void VulkanEngine::init()
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
 	}
+	load_meshes();
 	//everything went fine
 	_isInitialized = true;
 }
@@ -90,7 +89,7 @@ void VulkanEngine::initVulkan() {
 	allocInfo.physicalDevice = _chosenGPU;
 	allocInfo.device = _device;
 	allocInfo.instance = _instance;
-	vmaCreateAllocator(&allocInfo, &_allocator);
+	VK_CHECK(vmaCreateAllocator(&allocInfo, &_allocator));
 }
 void VulkanEngine::initSwapchain() {
 	vkb::SwapchainBuilder swapchainBuilder(_chosenGPU, _device, _surface);
@@ -246,6 +245,42 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	});
 /*#undef pipelineBuilder*/
 } 
+void VulkanEngine::load_meshes() {
+	_triangleMesh._vertices.resize(3);
+
+	_triangleMesh._vertices[0].position = { 1.f, 1.f , 0.0f };
+	_triangleMesh._vertices[1].position = {-1.f, 1.f , 0.0f };
+	_triangleMesh._vertices[2].position = { 0.f,-1.f , 0.0f };
+
+	_triangleMesh._vertices[0].color = { 0.f, 1.f, 0.0f };
+	_triangleMesh._vertices[1].color = { 0.f, 1.f, 0.0f };
+	_triangleMesh._vertices[2].color = { 0.f, 1.f, 0.0f };
+
+	upload_meshes(_triangleMesh);
+}
+void VulkanEngine::upload_meshes(Mesh& mesh) {
+	VkBufferCreateInfo bufferInfo = {};
+	bufferInfo.sType = VK_STRUCTURE_TYPE_BUFFER_CREATE_INFO;
+	bufferInfo.size = mesh._vertices.size() * sizeof(Vertex);
+	bufferInfo.usage = VK_BUFFER_USAGE_VERTEX_BUFFER_BIT;
+
+	VmaAllocationCreateInfo vmaallocInfo = {};
+	vmaallocInfo.usage = VMA_MEMORY_USAGE_CPU_TO_GPU;
+
+	VK_CHECK(vmaCreateBuffer(_allocator, &bufferInfo, &vmaallocInfo,
+		&mesh._vertexBuffer._buffer,
+		&mesh._vertexBuffer._allocation,
+		nullptr));
+	
+	void* data;
+	vmaMapMemory(_allocator, mesh._vertexBuffer._allocation, &data);
+	memcpy(data, mesh._vertices.data(), mesh._vertices.size() * sizeof(Vertex));
+	vmaUnmapMemory(_allocator, mesh._vertexBuffer._allocation);
+
+	_mainDelQueue.pushFunktion([=]() {
+		vmaDestroyBuffer(_allocator, mesh._vertexBuffer._buffer, mesh._vertexBuffer._allocation);
+	});
+}
 void VulkanEngine::cleanup()
 {	
 	if (_isInitialized) {
