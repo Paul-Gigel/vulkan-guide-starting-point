@@ -1,7 +1,0 @@
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/Shaders.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/ALL_BUILD.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/CMakeFiles/ZERO_CHECK.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/vkbootstrap.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/tinyobjloader.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/third_party/CMakeFiles/imgui.dir
-C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug/src/CMakeFiles/vulkan_guide.dir

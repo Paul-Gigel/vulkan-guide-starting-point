@@ -21,6 +21,8 @@ VulkanEngine::VulkanEngine() {
 	pip1.vertPath = "../shaders/triangle.vert.spv";
 	pip1.fragPath = "../shaders/triangle.frag.spv";
 	_pips.push_back(pip1);
+	pip1.vertPath = "../shaders/meshTriangle.vert.spv";
+	pip1.fragPath = "../shaders/coloredTriangle.frag.spv";
 }
 void VulkanEngine::init()
 {
@@ -220,9 +222,9 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
 	
+
 	PipelineBuilder pipelineBuilder;
-	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
-	pipelineBuilder._shaderStages.push_back(vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
+	//?!?!?!?!?!?!
 	pipelineBuilder._vertexInputInfo = vkinit::vertexInputStateCreateInfo();
 	pipelineBuilder._inputAssembly = vkinit::inputAssemblyStateCreateInfo(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST);
 	pipelineBuilder._viewport.x = 0.0f;
@@ -235,7 +237,21 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	pipelineBuilder._scissor.extent = _windowExtent;
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
-	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();																															//
+	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
+	
+	VertexInputDescription vertexDescription = Vertex::getVertexDescription();
+	pipelineBuilder._vertexInputInfo.pVertexAttributeDescriptions = vertexDescription.attributes.data();
+	pipelineBuilder._vertexInputInfo.vertexAttributeDescriptionCount = vertexDescription.attributes.size();
+	pipelineBuilder._vertexInputInfo.pVertexBindingDescriptions = vertexDescription.bindings.data();
+	pipelineBuilder._vertexInputInfo.vertexBindingDescriptionCount = vertexDescription.bindings.size();
+
+	pipelineBuilder._shaderStages.clear();
+
+	pipelineBuilder._shaderStages.push_back(
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_VERTEX_BIT, vertShader));
+	pipelineBuilder._shaderStages.push_back(
+		vkinit::pipelineShaderStageCreateInfo(VK_SHADER_STAGE_FRAGMENT_BIT, fragShader));
+
 	pip->_Pipeline = pipelineBuilder.buildPipeline(_device, _renderPass, *pip, *lay);
 	
 	vkDestroyShaderModule(_device, vertShader, nullptr);
@@ -326,7 +342,10 @@ void VulkanEngine::draw()
 	vkCmdBeginRenderPass(cmd, &rpBeginInfo, VK_SUBPASS_CONTENTS_INLINE);
 	
 	vkCmdBindPipeline(cmd, VK_PIPELINE_BIND_POINT_GRAPHICS, _pips[_selectPipe]._Pipeline);
-	vkCmdDraw(cmd, 3, 1, 0, 0);
+
+	VkDeviceSize offset = 0;
+	vkCmdBindVertexBuffers(cmd, 0, 1, &_triangleMesh._vertexBuffer._buffer, &offset);
+	vkCmdDraw(cmd, _triangleMesh._vertices.size(), 1, 0, 0);
 
 	vkCmdEndRenderPass(cmd);
 	VK_CHECK(vkEndCommandBuffer(cmd));
