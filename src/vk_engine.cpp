@@ -23,6 +23,7 @@ VulkanEngine::VulkanEngine() {
 	_pips.push_back(pip1);
 	pip1.vertPath = "../shaders/meshTriangle.vert.spv";
 	pip1.fragPath = "../shaders/coloredTriangle.frag.spv";
+	_pips.push_back(pip1);
 }
 void VulkanEngine::init()
 {
@@ -48,7 +49,7 @@ void VulkanEngine::init()
 	initSyncStructures();
 	_PipelineLayouts.push_back({});
 	initPipelineLayouts(&_PipelineLayouts[0]);
-	for (Pipeline& pip : _pips)									//begin here to refaktor (i guess)
+	for (Pipeline& pip : _pips)
 	{
 		initPipelines(&pip, &_PipelineLayouts[0]);
 	}
@@ -221,7 +222,6 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	else {
 		std::cout << "Triangle vertex shader successfully loaded" << std::endl;
 	}
-	
 
 	PipelineBuilder pipelineBuilder;
 	//?!?!?!?!?!?!
@@ -288,14 +288,14 @@ void VulkanEngine::upload_meshes(Mesh& mesh) {
 		&mesh._vertexBuffer._allocation,
 		nullptr));
 	
+	_mainDelQueue.pushFunktion([=]() {
+		vmaDestroyBuffer(_allocator, mesh._vertexBuffer._buffer, mesh._vertexBuffer._allocation);
+		});
+
 	void* data;
 	vmaMapMemory(_allocator, mesh._vertexBuffer._allocation, &data);
 	memcpy(data, mesh._vertices.data(), mesh._vertices.size() * sizeof(Vertex));
 	vmaUnmapMemory(_allocator, mesh._vertexBuffer._allocation);
-
-	_mainDelQueue.pushFunktion([=]() {
-		vmaDestroyBuffer(_allocator, mesh._vertexBuffer._buffer, mesh._vertexBuffer._allocation);
-	});
 }
 void VulkanEngine::cleanup()
 {	
