@@ -268,9 +268,9 @@ void VulkanEngine::load_meshes() {
 	_triangleMesh._vertices[1].position = {-1.f, 1.f , 0.0f };
 	_triangleMesh._vertices[2].position = { 0.f,-1.f , 0.0f };
 
-	_triangleMesh._vertices[0].color = { 0.f, 1.f, 0.0f };
-	_triangleMesh._vertices[1].color = { 0.f, 1.f, 0.0f };
-	_triangleMesh._vertices[2].color = { 0.f, 1.f, 0.0f };
+	_triangleMesh._vertices[0].color = { 1.f, 0.f, 0.0f };
+	_triangleMesh._vertices[1].color = { 0.f, 1.f, 1.0f };
+	_triangleMesh._vertices[2].color = { 0.f, 0.f, 0.0f };
 
 	upload_meshes(_triangleMesh);
 }
@@ -302,6 +302,7 @@ void VulkanEngine::cleanup()
 	if (_isInitialized) {
 		vkDeviceWaitIdle(_device);
 		_mainDelQueue.flush();
+		vmaDestroyAllocator(_allocator);
 		vkDestroySurfaceKHR(_instance, _surface, nullptr);
 		vkDestroyDevice(_device, nullptr);
 		vkb::destroy_debug_utils_messenger(_instance, _debugMessanger, nullptr);
