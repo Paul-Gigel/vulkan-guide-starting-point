@@ -238,13 +238,13 @@ void VulkanEngine::initPipelines(Pipeline* pip, PipelineLayout* lay) {
 	pipelineBuilder._rasterizer = vkinit::rasterizationStateCreateInfo(VK_POLYGON_MODE_FILL);
 	pipelineBuilder._multisampling = vkinit::multisampleStateCreateInfo();
 	pipelineBuilder._colorBlendAttachment = vkinit::colorBlendAttachment();
-	
+	//___________________________________________________________________________________________________________
 	VertexInputDescription vertexDescription = Vertex::getVertexDescription();
 	pipelineBuilder._vertexInputInfo.pVertexAttributeDescriptions = vertexDescription.attributes.data();
 	pipelineBuilder._vertexInputInfo.vertexAttributeDescriptionCount = vertexDescription.attributes.size();
 	pipelineBuilder._vertexInputInfo.pVertexBindingDescriptions = vertexDescription.bindings.data();
 	pipelineBuilder._vertexInputInfo.vertexBindingDescriptionCount = vertexDescription.bindings.size();
-
+	//___________________________________________________________________________________________________________	
 	pipelineBuilder._shaderStages.clear();
 
 	pipelineBuilder._shaderStages.push_back(

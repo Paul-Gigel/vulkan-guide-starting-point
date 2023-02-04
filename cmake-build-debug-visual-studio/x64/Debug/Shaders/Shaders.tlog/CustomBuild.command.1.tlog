@@ -1,0 +1,68 @@
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\6FF7EA078DD218BE0F1C84E9F0FAD717\COLOREDTRIANGLE.FRAG.SPV.RULE
+setlocal
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.frag.spv
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\6FF7EA078DD218BE0F1C84E9F0FAD717\COLOREDTRIANGLE.VERT.SPV.RULE
+setlocal
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert.spv
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\6FF7EA078DD218BE0F1C84E9F0FAD717\MESHTRIANGLE.VERT.SPV.RULE
+setlocal
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/meshTriangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/meshTriangle.vert.spv
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\6FF7EA078DD218BE0F1C84E9F0FAD717\TRIANGLE.FRAG.SPV.RULE
+setlocal
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.frag.spv
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\6FF7EA078DD218BE0F1C84E9F0FAD717\TRIANGLE.VERT.SPV.RULE
+setlocal
+C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/triangle.vert.spv
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKE-BUILD-DEBUG-VISUAL-STUDIO\CMAKEFILES\BAFB4FC9A298C54DB8771AAA25FE7BFD\SHADERS.RULE
+setlocal
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^C:\USERS\P.GIGEL\CLIONPROJECTS\VULKANGUIDE\VULKAN-GUIDE-STARTING-POINT\CMAKELISTS.TXT
+setlocal
+C:\Users\p.gigel\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\223.8617.54\bin\cmake\win\x64\bin\cmake.exe -SC:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point -BC:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug-visual-studio --check-stamp-file C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/cmake-build-debug-visual-studio/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\third_party\vkbootstrap\VkBootstrap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\third_party\vkbootstrap\VkBootstrap.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\third_party\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4D27B21A-08EC-3F6D-B5E4-7E26052B0CBB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E011D605-763B-3AE4-B16C-67DBC5510133}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

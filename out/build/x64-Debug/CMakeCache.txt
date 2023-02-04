@@ -127,10 +127,10 @@ CMAKE_RC_COMPILER:FILEPATH=C:/Program Files (x86)/Windows Kits/10/bin/10.0.19041
 //Flags for Windows Resource Compiler during all build types.
 CMAKE_RC_FLAGS:STRING=-DWIN32
 
-//Flags for Windows Resource Compiler during DEBUG builds.
+//No help, variable specified on the command line.
 CMAKE_RC_FLAGS_DEBUG:STRING=-D_DEBUG
 
-//Flags for Windows Resource Compiler during MINSIZEREL builds.
+//No help, variable specified on the command line.
 CMAKE_RC_FLAGS_MINSIZEREL:STRING=
 
 //Flags for Windows Resource Compiler during RELEASE builds.
@@ -192,7 +192,7 @@ CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 // Studio IDE projects all commands are done without /nologo.
 CMAKE_VERBOSE_MAKEFILE:BOOL=OFF
 
-//Path to a program.
+//No help, variable specified on the command line.
 GLSL_VALIDATOR:FILEPATH=C:/VulkanSDK/1.3.211.0/Bin/glslangValidator.exe
 
 //Path to a program.

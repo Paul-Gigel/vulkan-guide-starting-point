@@ -38,7 +38,7 @@ include CMakeFiles\rules.ninja
 #############################################
 # Utility command for Shaders
 
-build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build Shaders: phony CMakeFiles\Shaders ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\meshTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
 
 
 #############################################
@@ -67,7 +67,7 @@ build rebuild_cache: phony CMakeFiles\rebuild_cache.util
 #############################################
 # Phony custom command for CMakeFiles\Shaders
 
-build CMakeFiles\Shaders: phony ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
+build CMakeFiles\Shaders: phony ..\..\..\shaders\coloredTriangle.frag.spv ..\..\..\shaders\coloredTriangle.vert.spv ..\..\..\shaders\meshTriangle.vert.spv ..\..\..\shaders\triangle.frag.spv ..\..\..\shaders\triangle.vert.spv
 
 
 #############################################
@@ -85,6 +85,15 @@ build ..\..\..\shaders\coloredTriangle.frag.spv: CUSTOM_COMMAND ..\..\..\shaders
 build ..\..\..\shaders\coloredTriangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\coloredTriangle.vert
   COMMAND = cmd.exe /C "cd /D C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\out\build\x64-Debug && C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/coloredTriangle.vert.spv"
   DESC = Generating ../../../shaders/coloredTriangle.vert.spv
+  restat = 1
+
+
+#############################################
+# Custom command for ..\..\..\shaders\meshTriangle.vert.spv
+
+build ..\..\..\shaders\meshTriangle.vert.spv: CUSTOM_COMMAND ..\..\..\shaders\meshTriangle.vert
+  COMMAND = cmd.exe /C "cd /D C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\out\build\x64-Debug && C:\VulkanSDK\1.3.211.0\Bin\glslangValidator.exe -V C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/meshTriangle.vert -o C:/Users/p.gigel/CLionProjects/VulkanGuide/vulkan-guide-starting-point/shaders/meshTriangle.vert.spv"
+  DESC = Generating ../../../shaders/meshTriangle.vert.spv
   restat = 1
 
 
@@ -336,6 +345,14 @@ build src\CMakeFiles\vulkan_guide.dir\vk_Pipeline.cpp.obj: CXX_COMPILER__vulkan_
   TARGET_COMPILE_PDB = src\CMakeFiles\vulkan_guide.dir\
   TARGET_PDB = ..\..\..\bin\vulkan_guide.pdb
 
+build src\CMakeFiles\vulkan_guide.dir\vk_mash.cpp.obj: CXX_COMPILER__vulkan_guide_Debug ..\..\..\src\vk_mash.cpp || cmake_object_order_depends_target_vulkan_guide
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17
+  INCLUDES = -I..\..\..\src -I..\..\..\third_party\vkbootstrap -I..\..\..\third_party\vma -I..\..\..\third_party\glm -I..\..\..\third_party\tinyobjloader -I..\..\..\third_party\imgui -IC:\Users\p.gigel\source\SDL2-2.24.0\include -I\include -I..\..\..\third_party\stb_image -IC:\VulkanSDK\1.3.211.0\Include
+  OBJECT_DIR = src\CMakeFiles\vulkan_guide.dir
+  OBJECT_FILE_DIR = src\CMakeFiles\vulkan_guide.dir
+  TARGET_COMPILE_PDB = src\CMakeFiles\vulkan_guide.dir\
+  TARGET_PDB = ..\..\..\bin\vulkan_guide.pdb
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target vulkan_guide
@@ -344,7 +361,7 @@ build src\CMakeFiles\vulkan_guide.dir\vk_Pipeline.cpp.obj: CXX_COMPILER__vulkan_
 #############################################
 # Link the executable ..\..\..\bin\vulkan_guide.exe
 
-build ..\..\..\bin\vulkan_guide.exe: CXX_EXECUTABLE_LINKER__vulkan_guide_Debug src\CMakeFiles\vulkan_guide.dir\main.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_engine.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_initializers.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_Pipeline.cpp.obj | third_party\vkbootstrap.lib third_party\tinyobjloader.lib third_party\imgui.lib C$:\VulkanSDK\1.3.211.0\Lib\vulkan-1.lib || Shaders third_party\imgui.lib third_party\tinyobjloader.lib third_party\vkbootstrap.lib
+build ..\..\..\bin\vulkan_guide.exe: CXX_EXECUTABLE_LINKER__vulkan_guide_Debug src\CMakeFiles\vulkan_guide.dir\main.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_engine.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_initializers.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_Pipeline.cpp.obj src\CMakeFiles\vulkan_guide.dir\vk_mash.cpp.obj | third_party\vkbootstrap.lib third_party\tinyobjloader.lib third_party\imgui.lib C$:\VulkanSDK\1.3.211.0\Lib\vulkan-1.lib || Shaders third_party\imgui.lib third_party\tinyobjloader.lib third_party\vkbootstrap.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = third_party\vkbootstrap.lib  third_party\tinyobjloader.lib  third_party\imgui.lib  C:\VulkanSDK\1.3.211.0\Lib\vulkan-1.lib  SDL2.lib  SDL2main.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib

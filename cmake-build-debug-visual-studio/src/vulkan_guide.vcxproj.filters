@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_engine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_initializers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_Pipeline.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_mash.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_types.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_initializers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_Pipeline.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\vk_mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\Macros.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\src\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{4D27B21A-08EC-3F6D-B5E4-7E26052B0CBB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{E011D605-763B-3AE4-B16C-67DBC5510133}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

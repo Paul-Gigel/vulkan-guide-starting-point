@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\coloredTriangle.frag.spv.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\coloredTriangle.vert.spv.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\meshTriangle.vert.spv.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\triangle.frag.spv.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\6ff7ea078dd218be0f1c84e9f0fad717\triangle.vert.spv.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\bafb4fc9a298c54db8771aaa25fe7bfd\Shaders.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\p.gigel\CLionProjects\VulkanGuide\vulkan-guide-starting-point\cmake-build-debug-visual-studio\CMakeFiles\Shaders" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{110101AC-53A0-3B89-BBF9-0A81FDE7DF8E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
