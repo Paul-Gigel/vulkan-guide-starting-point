@@ -1,6 +1,10 @@
 #pragma once
 #include "vk_types.h"
 #include <vector>
+
+/*
+	implement some kind of Codesystem
+*/
 struct PipelineLayout
 {
 	VkPipelineLayout _pipelineLayout = VK_NULL_HANDLE;

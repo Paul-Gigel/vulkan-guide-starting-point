@@ -8,6 +8,14 @@
 #include <queue>
 #include <tuple>
 #include <functional>
+#include <glm/glm.hpp>
+
+struct MeshPushConstants
+{
+	glm::vec4 data;
+	glm::mat4 renderMatrix;
+};
+
 struct DeletionQueue {
 	std::deque<std::function<void()>> deletors;
 	void pushFunktion(std::function<void()>&& funktion) {
@@ -78,7 +86,8 @@ public:
 
 	void initSyncStructures();
 
-	void initPipelineLayouts(PipelineLayout* lay);
+	void initPipelineLayouts(PipelineLayout*);
+	void initPipelineLayouts(PipelineLayout*, VkPipelineLayoutCreateInfo&);
 
 	void initPipelines(Pipeline*, PipelineLayout*);
 
