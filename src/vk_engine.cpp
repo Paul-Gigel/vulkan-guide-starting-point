@@ -219,6 +219,7 @@ void VulkanEngine::initPipelineLayouts(PipelineLayout* const lay, VkPipelineLayo
 		PipelineBuilder pipelineBuilder;
 		pipelineBuilder.buildPipelineLayout(_device, &pipelineLayoutInfo, *lay);
 		_mainDelQueue.pushFunktion([=]() {
+			
 			vkDestroyPipelineLayout(_device, lay->_pipelineLayout, nullptr);
 			});
 	}
@@ -447,4 +448,11 @@ bool VulkanEngine::loadShaderModule(const char* filePath, VkShaderModule* outSha
 	}
 	*outShaderModule = shaderModule;
 	return true;
+}
+
+bool VulkanEngine::writeLogger(std::string path, std::string logMessage) {
+	std::ofstream file(cleanupLogPath);
+	if (!file.is_open())	return false;
+	file.write(logMessage.data(), sizeof(logMessage));
+	file.close();
 }

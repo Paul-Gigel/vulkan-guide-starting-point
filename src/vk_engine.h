@@ -29,6 +29,7 @@ struct DeletionQueue {
 		deletors.clear();
 	}
 };
+std::string cleanupLogPath = "../log/cleanupLog";
 class VulkanEngine {
 private:
 	VkInstance _instance;
@@ -106,4 +107,6 @@ public:
 
 
 	bool loadShaderModule(const char*, VkShaderModule*);
+
+	bool writeLogger(std::string, std::string);
 };

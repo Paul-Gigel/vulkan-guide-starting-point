@@ -32,3 +32,7 @@
 2051	2319	6973794452947015	../../../bin/vulkan_guide.exe	f33c226ad311eb7f
 3	1930	6973796053608930	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
 1931	2283	6973796056724268	../../../bin/vulkan_guide.exe	f33c226ad311eb7f
+4	2062	6974537155186289	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
+2063	2409	6974537158174545	../../../bin/vulkan_guide.exe	f33c226ad311eb7f
+3	1256	6982629843176594	src/CMakeFiles/vulkan_guide.dir/main.cpp.obj	ab1b880188f38000
+8	2072	6982629851215120	src/CMakeFiles/vulkan_guide.dir/vk_engine.cpp.obj	84a4be9502cb5f04
